@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/04 15:45:26 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:15:57 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef struct s_token
 {
@@ -54,9 +56,14 @@ void	ft_lstadd_back(t_token **lst, t_token *new);
 
 int		string_run(char *str);
 int		check_sp_ch(char c);
+t_token	*create_token(char *ptr, int *i);
 void	token_by_type(t_token *t, int *i);
 void	token_word(t_token *t, int *i);
 void	token_quo(t_token *t, int *i);
 void	token_dquo(t_token *t, int *i);
+void	token_del(t_token *t, int *i);
+void	token_pipe(t_token *t, int *i);
+void	token_redg(t_token *t, int *i);
+void	token_redl(t_token *t, int *i);
 
 #endif

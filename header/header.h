@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/04 17:15:57 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:29:46 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,5 @@ void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
 
 #endif
+
+// gcc -Wall -Wextra -Werror -lreadline *.c      

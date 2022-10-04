@@ -1,11 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
+/*   Updated: 2022/10/04 18:48:18 by mproveme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header/header.h"
 
-char	*get_line(void)
+char	*get_line(char *s)
 {
 	char	*str;
 	
+	if (s)
+		free(s);
 	str = readline("vvodi_svoyu_hernyu-> ");
-	if (str[0] != ENDL)
+	if (str && str[0] != ENDL)
 		add_history(str);
 	return (str);
 }
@@ -18,8 +32,16 @@ int	main(int argc, char** argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	str = get_line();
-	printf("'%s'\n", str);
+		str = NULL;
+	while(1)
+	{
+		str = get_line(str);
+		printf("inputed string: '%s'\n", str);
+		if (str == NULL)
+			break ;
+	}
+	// string_run(str);
+
 	// printf("res = %d\n", string_run(str));
 	return (0);
 }

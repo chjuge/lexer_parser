@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *vscode
+*test*
 
 # Object files
 *.o

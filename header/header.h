@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 14:05:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:00:33 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,22 @@ typedef struct s_token
 	char			*content;		//само слово после извлечения/раскрытия
 }					t_token;
 
+typedef struct s_keyval
+{
+	struct s_keyval	*next;
+	char			*key;
+	char			*val;
+	int				len_k;
+	int				len_v;
+}					t_keyval;
+
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 t_token	*init_token(void);
-t_token	*ft_lstlast(t_token *lst);
-void	ft_lstadd_back(t_token **lst, t_token *new);
+// t_token	*ft_lstlast(t_token *lst);
+void	add_back_token(t_token **lst, t_token *new);
 
 int		string_run(char *str);
 int		check_sp_ch(char c);
@@ -71,6 +80,8 @@ void	fill_content(t_token *t);
 void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
 
+t_keyval	*init_keyval(void);
+void	add_back_keyval(t_keyval **lst, t_keyval *new);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

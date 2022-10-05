@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_init.c                                      :+:      :+:    :+:   */
+/*   keyval.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 13:16:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 18:38:47 by mproveme         ###   ########.fr       */
+/*   Created: 2022/10/05 18:33:52 by mproveme          #+#    #+#             */
+/*   Updated: 2022/10/05 19:00:47 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_token	*init_token(void)
+t_keyval	*init_keyval(void)
 {
-	t_token	*res;
+	t_keyval	*new_el;
 
-	res = malloc(sizeof(t_token));
-	res->next = NULL;
-	res->type = 0;
-	res->len = 0;
-	res->ptr = NULL;
-	res->content = NULL;
-	return (res);
+	new_el = malloc(sizeof(t_keyval));
+	new_el->next = NULL;
+	new_el->key = NULL;
+	new_el->val = NULL;
+	new_el->len_k = 0;
+	new_el->len_v = 0;
+	return(new_el);
 }
 
-t_token	*ft_lstlast(t_token *lst)
+t_keyval	*ft_lstlast(t_keyval *lst)
 {
 	if (!lst)
 		return (0);
@@ -34,9 +34,9 @@ t_token	*ft_lstlast(t_token *lst)
 	return (lst);
 }
 
-void	add_back_token(t_token **lst, t_token *new)
+void	add_back_keyval(t_keyval **lst, t_keyval *new)
 {
-	t_token	*tmp;
+	t_keyval	*tmp;
 
 	if (!lst)
 		return ;

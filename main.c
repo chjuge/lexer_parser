@@ -6,11 +6,13 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 15:07:46 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:45:57 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
+
+char	**envp_g;
 
 char	*get_line(char *s)
 {
@@ -32,7 +34,7 @@ int	main(int argc, char** argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	(void)envp;
+	envp_g = envp;
 	str = NULL;
 	// while(1)
 	// {
@@ -58,7 +60,7 @@ int	string_run(char *str)
 	while (str[i] != ENDL)
 	{
 		tmp = create_token(str + i, &i);
-		ft_lstadd_back(&t, tmp);
+		add_back_token(&t, tmp);
 		// printf("%c", str[i]);
 		// i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/04 17:29:46 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:05:28 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_token
 	int				type;		//слово, разделитель и т.д.
 	int				len;		//длина всего слова, если это слово
 	char			*ptr;		//начало слова в строке
-	char			*str;		//само слово после извлечения/раскрытия
+	char			*content;		//само слово после извлечения/раскрытия
 }					t_token;
 
 
@@ -65,6 +65,11 @@ void	token_del(t_token *t, int *i);
 void	token_pipe(t_token *t, int *i);
 void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
+
+
+void	fill_content(t_token *t);
+void	fill_content_all(t_token *t);
+void	read_tokens(t_token *t);
 
 #endif
 

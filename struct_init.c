@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:16:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/04 13:44:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:16:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	*init_token(void)
 	res->type = 0;
 	res->len = 0;
 	res->ptr = NULL;
-	res->str = NULL;
+	res->content = NULL;
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/04 18:48:18 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:16:38 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*get_line(char *s)
 {
+	// printf("--> in get_line\n");
 	char	*str;
 	
 	if (s)
@@ -26,28 +27,27 @@ char	*get_line(char *s)
 
 int	main(int argc, char** argv, char **envp)
 {
-	// char *str = "hey bro! how are you?";
+	// printf("--> in main\n");
 	char	*str;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
-		str = NULL;
-	while(1)
-	{
+	str = NULL;
+	// while(1)
+	// {
 		str = get_line(str);
 		printf("inputed string: '%s'\n", str);
-		if (str == NULL)
-			break ;
-	}
-	// string_run(str);
-
-	// printf("res = %d\n", string_run(str));
+		string_run(str);
+	// 	if (str == NULL)
+	// 		break ;
+	// }
 	return (0);
 }
 
 int	string_run(char *str)
 {
+	// printf("--> in string_run\n");
 	int		i;
 	t_token	*t;
 	t_token *tmp;
@@ -62,12 +62,15 @@ int	string_run(char *str)
 		// printf("%c", str[i]);
 		// i++;
 	}
+	fill_content_all(t);
+	read_tokens(t);
 	// printf("\n");
 	return (i);
 }
 
 int	check_sp_ch(char c)
 {
+	// printf("--> in check_sp_ch\n");
 	if (c == QUO)
 		return (QUOINT);
 	else if (c == DQUO)
@@ -76,13 +79,18 @@ int	check_sp_ch(char c)
 		return (PIPEINT);
 	else if (c == DEL)
 		return (DELINT);
-	else if (c == REDG || c == REDL)
+	else if (c == REDG)
 		return (REDGINT);
+	else if (c == REDL)
+		return (REDLINT);
+	else if (c == ENDL)
+		return (-1);
 	return (WORDINT);
 }
 
 void	token_by_type(t_token *t, int *i)
 {
+	// printf("--> in token_by_type\n");
 	if (t->type == 0)
 		token_word(t, i);
 	else if (t->type == DELINT)
@@ -106,6 +114,7 @@ void	token_by_type(t_token *t, int *i)
 
 t_token	*create_token(char *ptr, int *i)
 {
+	// printf("--> in create_token\n");
 	t_token	*new_token;
 
 	new_token = init_token();
@@ -117,6 +126,7 @@ t_token	*create_token(char *ptr, int *i)
 
 void	token_word(t_token *t, int *i)
 {
+	// printf("--> in token_word\n");
 	int	type;
 
 	(t->len)++;
@@ -132,18 +142,21 @@ void	token_word(t_token *t, int *i)
 
 void	token_del(t_token *t, int *i)
 {
+	// printf("--> in token_del\n");
 	(t->len)++;
 	(*i)++;
 }
 
 void	token_pipe(t_token *t, int *i)
 {
+	// printf("--> in token_pipe\n");
 	(t->len)++;
 	(*i)++;	
 }
 
 void	token_quo(t_token *t, int *i)
 {
+	// printf("--> in token_quo\n");
 	(*i)++;
 	(t->ptr)++;
 	while ((t->ptr)[0] != QUO || (t->ptr)[0] != ENDL)
@@ -162,6 +175,7 @@ void	token_quo(t_token *t, int *i)
 
 void	token_dquo(t_token *t, int *i)
 {
+	// printf("--> in token_dquo\n");
 	(*i)++;
 	(t->ptr)++;
 	while ((t->ptr)[0] != DQUO || (t->ptr)[0] != ENDL)
@@ -180,6 +194,7 @@ void	token_dquo(t_token *t, int *i)
 
 void	token_redg(t_token *t, int *i)
 {
+	// printf("--> in token_redg\n");
 	(*i)++;
 	(t->len)++;
 	if (t->ptr[t->len] == REDG)
@@ -192,6 +207,7 @@ void	token_redg(t_token *t, int *i)
 
 void	token_redl(t_token *t, int *i)
 {
+	// printf("--> in token_redl\n");
 	(*i)++;
 	(t->len)++;
 	if (t->ptr[t->len] == REDL)

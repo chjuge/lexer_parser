@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 14:16:38 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:07:46 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,16 +156,23 @@ void	token_pipe(t_token *t, int *i)
 
 void	token_quo(t_token *t, int *i)
 {
+	char	*ptr;
+
 	// printf("--> in token_quo\n");
 	(*i)++;
 	(t->ptr)++;
-	while ((t->ptr)[0] != QUO || (t->ptr)[0] != ENDL)
+	// printf("drop before if for while\n");
+	ptr = t->ptr;
+	while (ptr[0] != QUO && ptr[0] != ENDL)
 	{
 		(*i)++;
 		(t->len)++;
-		(t->ptr)++;
+		// printf ("len	%d	ptr	%p	char	%c\n", t->len, t->ptr, ptr[0]);
+		ptr++;
+		// usleep(100000*3);
 	}
-	if ((t->ptr)[0] == ENDL)
+	// printf("drop before if for ENDL\n");
+	if (ptr[0] == ENDL)
 	{
 		printf("Input error. There are no second quote.\n");
 		exit(1);
@@ -175,18 +182,24 @@ void	token_quo(t_token *t, int *i)
 
 void	token_dquo(t_token *t, int *i)
 {
+	char	*ptr;
+
 	// printf("--> in token_dquo\n");
 	(*i)++;
 	(t->ptr)++;
-	while ((t->ptr)[0] != DQUO || (t->ptr)[0] != ENDL)
+	ptr = t->ptr;
+	while (ptr[0] != DQUO && ptr[0] != ENDL)
 	{
 		(*i)++;
 		(t->len)++;
-		(t->ptr)++;
+		// printf ("len	%d	ptr	%p	char	%c\n", t->len, t->ptr, ptr[0]);
+		ptr++;
+		// usleep(100000*3);
 	}
-	if ((t->ptr)[0] == ENDL)
+	// printf("drop before if for ENDL\n");
+	if (ptr[0] == ENDL)
 	{
-		printf("Input error. There are no second duoble quote.\n");
+		printf("Input error. There are no second double quote.\n");
 		exit(1);
 	}
 	(*i)++;

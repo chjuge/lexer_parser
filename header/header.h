@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 13:57:39 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:23:54 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,14 @@ typedef struct s_group  // финальные группы для исполне
 	t_keyval	*next;
 }				t_group;
 
-typedef struct s_keysearch
+typedef struct s_keysearch   // структура для отработки $
 {
-	/* data */
-};
+	s_keysearch	*next;
+	char		*ptr;
+	char		*key;
+	char		*value;
+	int			len;
+}				t_keysearch;
 
 
 
@@ -94,10 +98,17 @@ void	read_tokens(t_token *t);
 
 t_keyval	*init_keyval(void);
 void		add_back_keyval(t_keyval **lst, t_keyval *new);
+
 t_group		*init_group(void);
 void		add_back_group(t_group **lst, t_group *new);
 
+
+t_keysearch	*init_keysearch(void);
+void	add_back_keysearch(t_keysearch **lst, t_keysearch *new);
+
 void	parse_tokens(t_token *t, char **envp);
+
+void	redefine_str(t_token *t, t_keyval *env);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

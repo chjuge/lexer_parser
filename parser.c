@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 13:52:12 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:22:31 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	check_redefine(t_token *t)
 void	redefine_$(t_token *t, char **envp)
 {
 	t_keyval	*env;
-	t_keyval	*lst;
 
 	env = get_env_keys(envp);
 	if (t->type == WORDINT && check_redefine(t))

@@ -6,13 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 18:45:57 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:16:09 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
-
-char	**envp_g;
 
 char	*get_line(char *s)
 {
@@ -34,20 +32,19 @@ int	main(int argc, char** argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	envp_g = envp;
 	str = NULL;
 	// while(1)
 	// {
 		str = get_line(str);
 		printf("inputed string: '%s'\n", str);
-		string_run(str);
+		string_run(str, envp);
 	// 	if (str == NULL)
 	// 		break ;
 	// }
 	return (0);
 }
 
-int	string_run(char *str)
+int	string_run(char *str, char **envp)
 {
 	// printf("--> in string_run\n");
 	int		i;
@@ -66,6 +63,7 @@ int	string_run(char *str)
 	}
 	fill_content_all(t);
 	read_tokens(t);
+	parse_tokens(t, envp);
 	// printf("\n");
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 19:00:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:57:39 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-typedef struct s_token
+typedef struct s_token  // структура токенов, то, что приходит в парсер
 {
 	struct s_token	*next;		//следующий токе в списке
 	int				type;		//слово, разделитель и т.д.
@@ -46,7 +46,7 @@ typedef struct s_token
 	char			*content;		//само слово после извлечения/раскрытия
 }					t_token;
 
-typedef struct s_keyval
+typedef struct s_keyval  // переменная окружения, переработанная в список ключ + значение
 {
 	struct s_keyval	*next;
 	char			*key;
@@ -54,6 +54,18 @@ typedef struct s_keyval
 	int				len_k;
 	int				len_v;
 }					t_keyval;
+
+typedef struct s_group  // финальные группы для исполненинеия execve
+{						// т.е. то, что получится после парсера
+	t_keyval	*g;		// и применения токенов пайпа
+	t_keyval	*next;
+}				t_group;
+
+typedef struct s_keysearch
+{
+	/* data */
+};
+
 
 
 size_t	ft_strlen(const char *s);
@@ -81,7 +93,11 @@ void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
 
 t_keyval	*init_keyval(void);
-void	add_back_keyval(t_keyval **lst, t_keyval *new);
+void		add_back_keyval(t_keyval **lst, t_keyval *new);
+t_group		*init_group(void);
+void		add_back_group(t_group **lst, t_group *new);
+
+void	parse_tokens(t_token *t, char **envp);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

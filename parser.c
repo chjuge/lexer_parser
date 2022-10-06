@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 19:17:01 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:52:12 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,60 @@ void	get_kv(t_keyval *kv, char *str)
 	}
 }
 
-t_keyval	*get_env_keys(void)
+t_keyval	*get_env_keys(char **envp)
 {
 	t_keyval	*env;
 	t_keyval	*tmp;
 
 	env = NULL;
-	tmp = init_keyval();
-	while (envp_g)
+	while (envp)
 	{
-		get_kv(tmp, *envp_g);
+		tmp = init_keyval();
+		get_kv(tmp, *envp);
 		add_back_keyval(env, tmp);
-		envp_g++;
+		envp++;
 	}
-	
+	return (env);
 }
 
-void	redefine_$(t_token *t)
+int	check_redefine(t_token *t)
+{
+	int		res;
+	int		i;
+	char	*str;
+
+	res = 0;
+	i = 0;
+	str = t->content;
+	while (str[i] != '$' && str[i] != ENDL)
+		i++;
+	if (str[i] == '$')
+		res = 1;
+	return (res);
+}
+
+void	redefine_$(t_token *t, char **envp)
 {
 	t_keyval	*env;
 	t_keyval	*lst;
 
-	env = get_env_keys();
+	env = get_env_keys(envp);
+	if (t->type == WORDINT && check_redefine(t))
+		redefine_str(t, env);
+	while (t->next)
+	{
+		t = t->next;
+		if (t->type == WORDINT && check_redefine(t))
+			redefine_str(t, env);
+	}
 }
-void	parse_tokens(t_token *t)
+
+void	parse_tokens(t_token *t, char **envp)
 {
-	redefine_dquo(t);
-	redefine_$(t);
+	redefine_dquo(t); // тип "" в тип слов
+	redefine_$(t, envp); // раскрываем слова
+	redefine_quo(t); // '' в тип слов
+	optimize_words(t); // склеиваем токены, если рядом тип слова
+	optimize_delims(t); // удаляем излишние токены-разделители
+	syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 14:23:54 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:51:23 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ typedef struct s_keysearch   // структура для отработки $
 }				t_keysearch;
 
 
-
+// rrr.c
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
+int	ft_strncmp(const char *s1, const char *s2, size_t len);
+char	*ft_strdup(const char *str);
 
 t_token	*init_token(void);
 // t_token	*ft_lstlast(t_token *lst);
@@ -106,9 +109,13 @@ void		add_back_group(t_group **lst, t_group *new);
 t_keysearch	*init_keysearch(void);
 void	add_back_keysearch(t_keysearch **lst, t_keysearch *new);
 
+//parser.c
 void	parse_tokens(t_token *t, char **envp);
+void	redefine_$(t_token *t, char **envp);
 
-void	redefine_str(t_token *t, t_keyval *env);
+
+//redefine_str.c
+void	redefine_full(t_token *t, t_keyval *env);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

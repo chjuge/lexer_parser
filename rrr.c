@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:47:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 13:29:59 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:51:02 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,56 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[size - 1] = '\0';
 	}
 	return (src_size);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	src_size;
+	size_t	dst_size;
+	size_t	bytes_to_copy;
+
+	src_size = ft_strlen(src);
+	dst_size = ft_strlen(dst);
+	if (size < dst_size + 1)
+		return (src_size + size);
+	bytes_to_copy = size - dst_size;
+	ft_strlcpy(dst + dst_size, src, bytes_to_copy);
+	return (src_size + dst_size);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t len)
+{
+	unsigned char	tmp1;
+	unsigned char	tmp2;
+
+	while (len-- > 0)
+	{
+		tmp1 = (unsigned char) *s1++;
+		tmp2 = (unsigned char) *s2++;
+		if (tmp1 != tmp2)
+			return (tmp1 - tmp2);
+		if (tmp1 == '\0')
+			return (0);
+	}
+	return (0);
+}
+
+char	*ft_strdup(const char *str)
+{
+	char	*new_str;
+	int		len;
+	int		i;
+
+	len = ft_strlen(str);
+	new_str = malloc(sizeof(char) * (len + 1));
+	if (!new_str)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }

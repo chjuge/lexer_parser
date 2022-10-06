@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 14:22:31 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:12:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ void	redefine_$(t_token *t, char **envp)
 
 	env = get_env_keys(envp);
 	if (t->type == WORDINT && check_redefine(t))
-		redefine_str(t, env);
+		redefine_full(t, env);
 	while (t->next)
 	{
 		t = t->next;
 		if (t->type == WORDINT && check_redefine(t))
-			redefine_str(t, env);
+			redefine_full(t, env);
 	}
 }
 

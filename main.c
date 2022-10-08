@@ -6,13 +6,13 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 13:16:09 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:05:14 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-char	*get_line(char *s)
+char	*get_line(char *s) // используем readline для получения строки
 {
 	// printf("--> in get_line\n");
 	char	*str;
@@ -44,7 +44,7 @@ int	main(int argc, char** argv, char **envp)
 	return (0);
 }
 
-int	string_run(char *str, char **envp)
+int	string_run(char *str, char **envp) // обрабатываем строку, получаем токены
 {
 	// printf("--> in string_run\n");
 	int		i;
@@ -68,7 +68,7 @@ int	string_run(char *str, char **envp)
 	return (i);
 }
 
-int	check_sp_ch(char c)
+int	check_sp_ch(char c) // проверяем на специальные символы
 {
 	// printf("--> in check_sp_ch\n");
 	if (c == QUO)
@@ -88,7 +88,7 @@ int	check_sp_ch(char c)
 	return (WORDINT);
 }
 
-void	token_by_type(t_token *t, int *i)
+void	token_by_type(t_token *t, int *i)  // создаем токен в зависимости от типа
 {
 	// printf("--> in token_by_type\n");
 	if (t->type == 0)

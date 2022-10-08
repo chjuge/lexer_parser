@@ -6,11 +6,26 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 19:03:49 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:30:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
+
+int	get_substr(char *src, char *dst, int *len, char ch)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != ch && src[i] != ENDL)
+		i++;
+	if (i != 0)
+	{
+		dst = malloc(i + 1);
+		ft_strlcpy(dst, src, i + 1);
+	}
+	return (i);
+}
 
 t_keysearch	*redefine_key(t_token *t)
 {
@@ -21,20 +36,13 @@ t_keysearch	*redefine_key(t_token *t)
 	ks = NULL;
 	i = 0;
 	tmp = init_keysearch();
-	while (t->content[i++] != '$')
-		tmp->len++;
-	tmp->value = malloc(tmp->len + 1);
-	ft_strlcpy(tmp->value, t->content, tmp->len);
+	i += get_substr(t->content, tmp->value, &(tmp->len), '$');
 	add_back_keysearch(ks, tmp);
 	i++;
 	while (1)
 	{
 		tmp = init_keysearch();
-		tmp->ptr = t->content + i;
-		while (t->content[i] != '$' && t->content[i++] != ENDL)
-			tmp->len++;
-		tmp->key = malloc(tmp->len + 1);
-		ft_strlcpy(tmp->key, tmp->ptr, tmp->len);
+		i += get_substr(t->content + i, tmp->key, &(tmp->len), '$');
 		add_back_keysearch(ks, tmp);
 		if (t->content[i] == ENDL)
 			break ;
@@ -90,7 +98,7 @@ void	redefine_full(t_token *t, t_keyval *env)
 	t_keysearch	*ks;
 	int			flag;
 
-	ks = redefine_key(t); // получили куски строки кусками
+	ks = redefine_key(t); // получили строку кусками
 	flag = 0;
 	if (ks->key == NULL)
 		ks = ks->next;

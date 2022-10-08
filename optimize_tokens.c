@@ -6,29 +6,55 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 16:24:40 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 19:01:08 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-void	delite_token(t_token *curr, t_token *next)
+void	delite_next_token(t_token *curr, t_token *next)
 {
 	curr->next = next->next;
 	free_token(next);
 }
 
-void	optimize_delims(t_token *t)
+void	delite_curr_token(t_token *curr, t_token *prev)
 {
-	while (t)
+	prev->next = curr->next;
+	free_token(curr);
+}
+
+void	optimize_delims(t_token **t)
+{
+	t_token	*tmp;
+	t_token	*prev;
+	t_token	*curr;
+
+	tmp = *t;
+	prev = NULL;
+	while (tmp)
 	{
-		while (t && t->type != DELINT)
-			t = t->next;
+		while (tmp && tmp->type != DELINT)
+		{
+			prev = tmp;
+			tmp = tmp->next;
+		}
 		if (!t)
 			break ;
-		while (t && t->next->type == DELINT)
-			delite_token(t, t->next);
-		t = t->next;
+		while (tmp && tmp->type == DELINT)
+		{
+			curr = tmp;
+			tmp = tmp->next;
+			if (prev)
+				delite_curr_token(curr, prev);
+			else
+			{
+				*t = tmp;
+				free_token(curr);
+			}
+		}
+		prev = tmp;
+		tmp = tmp->next;
 	}
 }
 
@@ -57,7 +83,7 @@ void	optimize_words(t_token *t)
 		while (t && t->next->type == WORDINT)
 		{
 			token_cat(t, t->next);
-			delite_token(t, t->next);
+			delite__next_token(t, t->next);
 		}
 		t = t->next;
 	}

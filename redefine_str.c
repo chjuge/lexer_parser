@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 15:08:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:30:21 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	redefine_value(t_keysearch *ks, t_keyval *env, int flag)
 	if (flag == 0)
 	{
 		ks->len = 0;
-		ks->value = NULL;
+		ks->value = malloc(1);
+		ks->value[0] = ENDL;
 		return ;
 	}
 	ks->value = ft_strdup(env->val);

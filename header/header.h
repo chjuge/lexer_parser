@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 15:34:05 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:33:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,10 @@ void	redefine_full(t_token *t, t_keyval *env);
 
 //optimize_tokens.c
 void	optimize_delims(t_token *t);
+void	optimize_words(t_token *t);
+
+//syntax_checker.c
+void	syntax_checker(t_token *t);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

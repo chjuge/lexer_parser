@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 14:30:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:08:14 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	redefine_value(t_keysearch *ks, t_keyval *env, int flag)
 	if (flag == 0)
 	{
 		ks->len = 0;
-		ks->key = NULL;
 		ks->value = NULL;
 		return ;
 	}
@@ -82,7 +81,6 @@ void	parts_into_str(t_token *t, t_keysearch *ks)
 		tmp = tmp->next;
 	}
 	str = malloc(len + 1);
-	str[len] = ENDL;
 	tmp = ks;
 	while (tmp)
 	{
@@ -98,22 +96,23 @@ void	redefine_full(t_token *t, t_keyval *env)
 	t_keysearch	*ks;
 	int			flag;
 
-	ks = redefine_key(t); // получили строку кусками
+	ks = redefine_key(t); // получили строку кусками -> структура ключей
 	flag = 0;
-	if (ks->key == NULL)
+	if (ks->key == NULL) // был текст до $, пропускаем
 		ks = ks->next;
 	while (ks)
 	{
 		if (ft_strncmp(ks->key, env->key, ks->len) == 0) // если ключ в куске совпадает 
 			flag = 1;									 // с ключом окружения
-		while (!flag && env->next)						 // то ставим флаг на замену
+		while (flag == 0 && env->next)						 // то ставим флаг на замену
 		{
 			env = env->next;
 			if (ft_strncmp(ks->key, env->key, ks->len) == 0)
 				flag = 1;
 		}
-		redefine_value(ks, env, flag);
-		ks = ks->next;
+		redefine_value(ks, env, flag); //в текущем элементе мы нашли необходимость
+		ks = ks->next;					//преобразования. преобразуем 1 элемент списка
 	}
-	parts_into_str(t, ks);
+	parts_into_str(t, ks); //у нас есть преобразованные куски, которые нужно склеить
+	free_keysearch(ks); // очищаем уже ненужный список 
 }

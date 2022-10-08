@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 14:10:13 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:12:58 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,22 @@ void	redefine_$(t_token *t, char **envp)
 	}
 }
 
+void	redefine_quo(t_token *t)
+{
+	while (t)
+	{
+		if (t->type == QUOINT)
+			t->type = WORDINT;
+		t = t->next;
+	}
+}
+
 void	parse_tokens(t_token *t, char **envp)
 {
 	redefine_dquo(t); // тип "" в тип слов
 	redefine_$(t, envp); // раскрываем слова
 	redefine_quo(t); // '' в тип слов
-	optimize_words(t); // склеиваем токены, если рядом тип слова
 	optimize_delims(t); // удаляем излишние токены-разделители
+	optimize_words(t); // склеиваем токены, если рядом тип слова
 	syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
 }

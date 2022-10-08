@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 14:30:43 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:34:05 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int	ft_strncmp(const char *s1, const char *s2, size_t len);
 char	*ft_strdup(const char *str);
 
+//token.c
 t_token	*init_token(void);
-// t_token	*ft_lstlast(t_token *lst);
 void	add_back_token(t_token **lst, t_token *new);
+void	free_token(t_token *t);
+void	free_tokens_all(t_token *t);
+
 
 int		string_run(char *str, char **envp);
 int		check_sp_ch(char c);
@@ -105,9 +108,10 @@ void		add_back_keyval(t_keyval **lst, t_keyval *new);
 t_group		*init_group(void);
 void		add_back_group(t_group **lst, t_group *new);
 
-
+//keysearch.c
 t_keysearch	*init_keysearch(void);
 void	add_back_keysearch(t_keysearch **lst, t_keysearch *new);
+void	free_keysearch(t_keysearch *t);
 
 //parser.c
 void	parse_tokens(t_token *t, char **envp);
@@ -117,6 +121,9 @@ void	redefine_$(t_token *t, char **envp);
 //redefine_str.c
 int		get_substr(char *src, char *dst, int *len, char ch);
 void	redefine_full(t_token *t, t_keyval *env);
+
+//optimize_tokens.c
+void	optimize_delims(t_token *t);
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

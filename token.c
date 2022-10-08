@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:16:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 18:38:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:31:19 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_token	*init_token(void)
 	return (res);
 }
 
-t_token	*ft_lstlast(t_token *lst)
+t_token	*token_last(t_token *lst)
 {
 	if (!lst)
 		return (0);
@@ -46,6 +46,26 @@ void	add_back_token(t_token **lst, t_token *new)
 		*lst = new;
 		return ;
 	}
-	tmp = ft_lstlast(tmp);
+	tmp = token_last(tmp);
 	tmp->next = new;
+}
+
+void	free_token(t_token *t)
+{
+	if (t->content)
+		free(t->content);
+	free(t);
+}
+
+void	free_tokens_all(t_token *t)
+{
+	t_token	*tmp;
+
+	tmp = t;
+	while (t)
+	{
+		tmp = t;
+		t = t->next;
+		free_token(tmp);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:18:02 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 14:20:02 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:07:39 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ t_keysearch	*init_keysearch(void)
 	new_el->value = NULL;
 	new_el->len = 0;
 	return (new_el);
+}
+
+void	free_keysearch(t_keysearch *t)
+{
+	t_keysearch	*tmp;
+
+	while (t)
+	{
+		if (t->key)
+			free(t->key);
+		if (t->value)
+			free(t->value);
+		tmp = t;
+		t = t->next;
+		free(tmp);
+	}
 }

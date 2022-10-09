@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 16:33:01 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:41:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ typedef struct s_token  // структура токенов, то, что пр�
 	char			*content;		//само слово после извлечения/раскрытия
 }					t_token;
 
-typedef struct s_keyval  // переменная окружения, переработанная в список ключ + значение
+typedef struct s_env  // переменная окружения, переработанная в список ключ + значение
 {
-	struct s_keyval	*next;
+	struct s_env	*next;
 	char			*key;
 	char			*val;
 	int				len_k;
 	int				len_v;
-}					t_keyval;
+}					t_env;
 
 typedef struct s_group  // финальные группы для исполненинеия execve
 {						// т.е. то, что получится после парсера
-	t_keyval	*g;		// и применения токенов пайпа
-	t_keyval	*next;
-}				t_group;
+	struct s_group	*g;		// и применения токенов пайпа
+	struct s_group	*next;
+}					t_group;
 
 typedef struct s_keysearch   // структура для отработки $
 {
@@ -97,13 +97,14 @@ void	token_pipe(t_token *t, int *i);
 void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
 
-
+//token_reader.c
 void	fill_content(t_token *t);
 void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
+void	env_reader(t_env *env);
 
-t_keyval	*init_keyval(void);
-void		add_back_keyval(t_keyval **lst, t_keyval *new);
+t_env	*init_env(void);
+void		add_back_env(t_env **lst, t_env *new);
 
 t_group		*init_group(void);
 void		add_back_group(t_group **lst, t_group *new);
@@ -120,14 +121,24 @@ void	redefine_$(t_token *t, char **envp);
 
 //redefine_str.c
 int		get_substr(char *src, char *dst, int *len, char ch);
-void	redefine_full(t_token *t, t_keyval *env);
+void	redefine_full(t_token *t, t_env *env);
 
 //optimize_tokens.c
-void	optimize_delims(t_token *t);
+void	optimize_delims(t_token **t);
 void	optimize_words(t_token *t);
 
 //syntax_checker.c
 void	syntax_checker(t_token *t);
+
+//token_by_type.c
+void	token_word(t_token *t, int *i);
+void	token_del(t_token *t, int *i);
+void	token_pipe(t_token *t, int *i);
+void	token_quo(t_token *t, int *i);
+void	token_dquo(t_token *t, int *i);
+void	token_redg(t_token *t, int *i);
+void	token_redl(t_token *t, int *i);
+
 #endif
 
 // gcc -Wall -Wextra -Werror -lreadline *.c      

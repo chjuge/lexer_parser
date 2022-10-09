@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 19:01:08 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:19:50 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	optimize_words(t_token *t)
 		while (t && t->next->type == WORDINT)
 		{
 			token_cat(t, t->next);
-			delite__next_token(t, t->next);
+			delite_next_token(t, t->next);
 		}
 		t = t->next;
 	}

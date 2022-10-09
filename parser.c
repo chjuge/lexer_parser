@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 18:37:13 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:52:39 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	redefine_dquo(t_token *t)
 	}
 }
 
-void	get_kv(t_keyval *kv, char *str)
+void	get_kv(t_env *kv, char *str)
 {
-	int	len;
 	int	i;
 
 	i = 0;
@@ -59,17 +58,18 @@ void	get_kv(t_keyval *kv, char *str)
 	}
 }
 
-t_keyval	*get_env_keys(char **envp)
+t_env	*get_env(char **envp)
 {
-	t_keyval	*env;
-	t_keyval	*tmp;
+	t_env	*env;
+	t_env	*tmp;
 
 	env = NULL;
-	while (envp)
+	while (envp && envp[0])
 	{
-		tmp = init_keyval();
+		// printf("%s\n", envp[0]);
+		tmp = init_env();
 		get_kv(tmp, *envp);
-		add_back_keyval(env, tmp);
+		add_back_env(&env, tmp);
 		envp++;
 	}
 	return (env);
@@ -93,9 +93,11 @@ int	check_redefine(t_token *t)
 
 void	redefine_$(t_token *t, char **envp)
 {
-	t_keyval	*env;
+	t_env	*env;
 
-	env = get_env_keys(envp);  // перерабатываем параметры окружения в структуру ключ-знач
+	env = get_env(envp);  // перерабатываем параметры окружения в структуру ключ-знач
+	// printf("env is ready\n");
+	// env_reader(env);
 	while (t != NULL)
 	{
 		if (t->type == WORDINT && check_redefine(t))
@@ -116,10 +118,18 @@ void	redefine_quo(t_token *t)
 
 void	parse_tokens(t_token *t, char **envp)
 {
+	printf("redefine_dquo\n");
 	redefine_dquo(t); // тип "" в тип слов
+	printf("redefine_$\n");
 	redefine_$(t, envp); // раскрываем слова
+	read_tokens(t);
+	printf("redefine_quo\n");
 	redefine_quo(t); // '' в тип слов
+	printf("optimize_words\n");
 	optimize_words(t); // склеиваем токены, если рядом тип слова
-	optimize_delims(t); // удаляем излишние токены-разделители UPD: УДАЛЯЕМ ВСЕ разделители
-	syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
+	printf("optimize_delims\n");
+	optimize_delims(&t); // удаляем излишние токены-разделители UPD: УДАЛЯЕМ ВСЕ разделители
+	printf("read_tokens\n");
+	read_tokens(t);
+	//syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/05 14:19:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:40:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,14 @@ void	fill_content_all(t_token *t)
 	{
 		t = t->next;
 		fill_content(t);
+	}
+}
+
+void	env_reader(t_env *env)
+{
+	while (env)
+	{
+		printf("key:	%s,	content:	%s\n", env->key, env->val);
+		env = env->next;
 	}
 }

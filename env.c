@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyval.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:33:52 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:04 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:41:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_keyval	*init_keyval(void)
+t_env	*init_env(void)
 {
-	t_keyval	*new_el;
+	t_env	*new_el;
 
-	new_el = malloc(sizeof(t_keyval));
+	new_el = malloc(sizeof(t_env));
 	new_el->next = NULL;
 	new_el->key = NULL;
 	new_el->val = NULL;
@@ -25,7 +25,7 @@ t_keyval	*init_keyval(void)
 	return(new_el);
 }
 
-t_keyval	*ft_lstlast(t_keyval *lst)
+t_env	*env_last(t_env *lst)
 {
 	if (!lst)
 		return (0);
@@ -34,9 +34,9 @@ t_keyval	*ft_lstlast(t_keyval *lst)
 	return (lst);
 }
 
-void	add_back_keyval(t_keyval **lst, t_keyval *new)
+void	add_back_env(t_env **lst, t_env *new)
 {
-	t_keyval	*tmp;
+	t_env	*tmp;
 
 	if (!lst)
 		return ;
@@ -46,6 +46,6 @@ void	add_back_keyval(t_keyval **lst, t_keyval *new)
 		*lst = new;
 		return ;
 	}
-	tmp = ft_lstlast(tmp);
+	tmp = env_last(tmp);
 	tmp->next = new;
 }

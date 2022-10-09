@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 16:30:21 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:40:07 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_substr(char *src, char *dst, int *len, char ch)
 	{
 		dst = malloc(i + 1);
 		ft_strlcpy(dst, src, i + 1);
+		*len = i;
 	}
 	return (i);
 }
@@ -37,13 +38,13 @@ t_keysearch	*redefine_key(t_token *t)
 	i = 0;
 	tmp = init_keysearch();
 	i += get_substr(t->content, tmp->value, &(tmp->len), '$');
-	add_back_keysearch(ks, tmp);
+	add_back_keysearch(&ks, tmp);
 	i++;
 	while (1)
 	{
 		tmp = init_keysearch();
 		i += get_substr(t->content + i, tmp->key, &(tmp->len), '$');
-		add_back_keysearch(ks, tmp);
+		add_back_keysearch(&ks, tmp);
 		if (t->content[i] == ENDL)
 			break ;
 		i++;
@@ -51,7 +52,7 @@ t_keysearch	*redefine_key(t_token *t)
 	return (ks);
 }
 
-void	redefine_value(t_keysearch *ks, t_keyval *env, int flag)
+void	redefine_value(t_keysearch *ks, t_env *env, int flag)
 {
 	if (ks->key)
 		free(ks->key);
@@ -92,7 +93,7 @@ void	parts_into_str(t_token *t, t_keysearch *ks)
 	t->content = str;
 }
 
-void	redefine_full(t_token *t, t_keyval *env)
+void	redefine_full(t_token *t, t_env *env)
 {
 	t_keysearch	*ks;
 	int			flag;

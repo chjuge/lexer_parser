@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 13:13:05 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:13:55 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:48:08 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	token_word(t_token *t, int *i)
 	// printf("--> in token_word\n");
 	int	type;
 
-	(t->len)++;
-	(*i)++;
+	// (t->len)++;
+	// (*i)++;
 	type = check_sp_ch((t->ptr)[0]);
 	while (type == WORDINT)
 	{

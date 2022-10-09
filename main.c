@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:13:51 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:45:58 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	check_sp_ch(char c) // проверяем на специальные сим
 void	token_by_type(t_token *t, int *i)  // создаем токен в зависимости от типа
 {
 	// printf("--> in token_by_type\n");
-	if (t->type == 0)
+	if (t->type == WORDINT)
 		token_word(t, i);
 	else if (t->type == DELINT)
 		token_del(t, i);

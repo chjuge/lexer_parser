@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:47:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 15:25:48 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:56:35 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,18 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	bytes_to_copy = size - dst_size;
 	ft_strlcpy(dst + dst_size, src, bytes_to_copy);
 	return (src_size + dst_size);
+}
+
+void	ft_strcpy(char *dst, char *src, int cnt)
+{
+	int	i;
+
+	i = 0;
+	while (i < cnt)
+	{
+		dst[i] = src[i];
+		i++;
+	}
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t len)

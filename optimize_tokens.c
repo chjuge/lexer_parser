@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 16:03:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:59:19 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,15 @@ void	token_cat(t_token *curr, t_token *next)
 	if (next->len > 0)
 	{
 		new_s = malloc (len + 1);
-		ft_strlcat(new_s, curr->content, len + 1);
+		new_s[len] = ENDL;
+		// ft_strlcat(new_s, curr->content, len + 1);
 		// printf("curr, len	%d	%s\n", curr->len, curr->content);
 		// printf("next, len	%d	%s\n", next->len, next->content);
-		// printf("novaya stroka ---> %s\n", new_s);
-		ft_strlcat(new_s, next->content, len + 1);
-		// printf("novaya stroka ---> %s\n", new_s);
+		ft_strcpy(new_s, curr->content, curr->len);
+		// printf("novaya stroka (1)---> %s\n", new_s);
+		// ft_strlcat(new_s, next->content, len + 1);
+		ft_strcpy(new_s + curr->len, next->content, next->len);
+		printf("novaya stroka ---> %s\n", new_s);
 		free(curr->content);
 		curr->content = new_s;
 		curr->len = len;

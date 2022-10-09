@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 14:24:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:57:34 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int	ft_strncmp(const char *s1, const char *s2, size_t len);
 char	*ft_strdup(const char *str);
+void	ft_strcpy(char *dst, char *src, int cnt);
 
 //token.c
 t_token	*init_token(void);

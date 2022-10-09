@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:52:39 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:27:27 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,16 @@ void	redefine_$(t_token *t, char **envp)
 
 	env = get_env(envp);  // перерабатываем параметры окружения в структуру ключ-знач
 	// printf("env is ready\n");
-	// env_reader(env);
+	// read_env(env);
+	// int i = 0;
 	while (t != NULL)
 	{
+		// printf("repeat: %d\n", ++i);
 		if (t->type == WORDINT && check_redefine(t))
 			redefine_full(t, env);
 		t = t->next;
 	}
+	// printf("i = %d\n", i);
 }
 
 void	redefine_quo(t_token *t)

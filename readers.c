@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:40:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:07:30 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,20 @@ void	fill_content_all(t_token *t)
 	}
 }
 
-void	env_reader(t_env *env)
+void	read_env(t_env *env)
 {
 	while (env)
 	{
 		printf("key:	%s,	content:	%s\n", env->key, env->val);
 		env = env->next;
+	}
+}
+
+void	read_ks(t_keysearch *ks)
+{
+	while(ks)
+	{
+		printf("key:	%s,		value:	%s\n", ks->key, ks->value);
+		ks = ks->next;
 	}
 }

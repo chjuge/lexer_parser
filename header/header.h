@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:41:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:24:16 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,12 @@ void	token_pipe(t_token *t, int *i);
 void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
 
-//token_reader.c
+//readers.c
 void	fill_content(t_token *t);
 void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
-void	env_reader(t_env *env);
+void	read_env(t_env *env);
+void	read_ks(t_keysearch *ks);
 
 t_env	*init_env(void);
 void		add_back_env(t_env **lst, t_env *new);
@@ -120,7 +121,7 @@ void	redefine_$(t_token *t, char **envp);
 
 
 //redefine_str.c
-int		get_substr(char *src, char *dst, int *len, char ch);
+int		get_substr(char *src, char **dst, int *len, char ch);
 void	redefine_full(t_token *t, t_env *env);
 
 //optimize_tokens.c

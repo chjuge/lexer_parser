@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 13:19:50 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 16:03:47 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,36 @@ void	optimize_delims(t_token **t)
 void	token_cat(t_token *curr, t_token *next)
 {
 	char	*new_s;
+	int		len;
 
+	len = curr->len + next->len;
 	if (next->len > 0)
 	{
-		new_s = malloc (curr->len + next->len + 1);
-		ft_strlcat(new_s, curr->content, curr->len + 1);
-		ft_strlcat(new_s, next->content, next->len);
+		new_s = malloc (len + 1);
+		ft_strlcat(new_s, curr->content, len + 1);
+		// printf("curr, len	%d	%s\n", curr->len, curr->content);
+		// printf("next, len	%d	%s\n", next->len, next->content);
+		// printf("novaya stroka ---> %s\n", new_s);
+		ft_strlcat(new_s, next->content, len + 1);
+		// printf("novaya stroka ---> %s\n", new_s);
 		free(curr->content);
 		curr->content = new_s;
+		curr->len = len;
 	}
 }
 
 void	optimize_words(t_token *t)
 {
+	// int i = 0;
 	while (t)
 	{
 		while (t && t->type != WORDINT)
 			t = t->next;
 		if (!t)
 			break ;
-		while (t && t->next->type == WORDINT)
+		while (t->next && t->next->type == WORDINT)
 		{
+			// printf("in cycle %d\n", ++i);
 			token_cat(t, t->next);
 			delite_next_token(t, t->next);
 		}

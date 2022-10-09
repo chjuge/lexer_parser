@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 14:27:27 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:43:24 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	parse_tokens(t_token *t, char **envp)
 	read_tokens(t);
 	printf("redefine_quo\n");
 	redefine_quo(t); // '' в тип слов
+	read_tokens(t);	
 	printf("optimize_words\n");
 	optimize_words(t); // склеиваем токены, если рядом тип слова
 	printf("optimize_delims\n");

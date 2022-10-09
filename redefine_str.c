@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 15:09:42 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:52:23 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ t_keysearch	*redefine_key(t_token *t) // делю строку на куски
 	i = 0;
 	// printf("token:	%s\n", t->content);
 	tmp = init_keysearch();
-	i += get_substr(t->content, &(tmp->value), &(tmp->len), '$');
-	add_back_keysearch(&ks, tmp);
+	if (t->content[0] != '$')
+	{
+		i += get_substr(t->content, &(tmp->value), &(tmp->len), '$');
+		add_back_keysearch(&ks, tmp);
+	}
 	// read_ks(ks);
 	i++;
 	while (1)
@@ -60,36 +63,35 @@ t_keysearch	*redefine_key(t_token *t) // делю строку на куски
 
 void	redefine_value(t_keysearch *ks, t_env *env, int flag)
 {
-	printf("in redefine_value\n");
-	if (!env)
-	{
-		printf("env == NULL!!!\n");
-		// exit(1);
-	}
+	// printf("in redefine_value\n");
+	// if (!env)
+	// {
+	// 	printf("env == NULL!!!\n");
+	// 	// exit(1);
+	// }
 	if (ks->value)
 		free(ks->value);
-	printf("flag = %d\n", flag);
+	// printf("flag = %d\n", flag);
 	if (flag == 0)
 	{
-		printf("1\n");
+		// printf("1\n");
 		ks->len = 0;
-		printf("2\n");
+		// printf("2\n");
 		ks->value = malloc(1);
-		printf("3\n");
+		// printf("3\n");
 		ks->value[0] = ENDL;
-		printf("4\n");
+		// printf("4\n");
 		// printf("value of env:	%s\n", env->val);
-		printf("new value of element: '%s'\n", ks->value);
-		return ;
+		// printf("new value of element: '%s'\n", ks->value);
 	}
 	else
 	{
 		ks->len = env->len_v;
 		ks->value = ft_strdup(env->val);
 	}
-	printf("5\n");
-	printf("value of env:	%s\n", env->val);
-	printf("new value of element: '%s'\n", ks->value);
+	// printf("5\n");
+	// printf("value of env:	%s\n", env->val);
+	// printf("new value of element: '%s'\n", ks->value);
 }
 
 void	parts_into_str(t_token *t, t_keysearch *ks)
@@ -114,11 +116,12 @@ void	parts_into_str(t_token *t, t_keysearch *ks)
 	}
 	free(t->content);
 	t->content = str;
+	t->len = len;
 }
 
 void	redefine_full(t_token *t, t_env *envf)
 {
-	printf("voshel v -> redefine_full\n");
+	// printf("voshel v -> redefine_full\n");
 	t_keysearch	*ks;
 	t_keysearch	*tmp;
 	int			flag;
@@ -126,8 +129,10 @@ void	redefine_full(t_token *t, t_env *envf)
 
 	ks = redefine_key(t); // получили строку кусками -> структура ключей
 	flag = 0;
+	// printf("ks if ready\n");
+
 	tmp = ks; //tmp для того, чтобы не потерять начало списка
-	read_ks(tmp);
+	// read_ks(tmp);
 	if (tmp->key == NULL) // был текст до $, пропускаем
 		tmp = tmp->next;
 	while (tmp)
@@ -147,8 +152,8 @@ void	redefine_full(t_token *t, t_env *envf)
 		redefine_value(tmp, env, flag); //в текущем элементе мы нашли необходимость
 		tmp = tmp->next;					//преобразования. преобразуем 1 элемент списка
 	}
-	printf("ending of redefine_full\n");
-	read_ks(ks);
+	// printf("ending of redefine_full\n");
+	// read_ks(ks);
 	parts_into_str(t, ks); //у нас есть преобразованные куски, которые нужно склеить
 	free_keysearch(ks); // очищаем уже ненужный список 
 }

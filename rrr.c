@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:47:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 15:05:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:25:48 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t len)
 	unsigned char	tmp1;
 	unsigned char	tmp2;
 
-	printf("%s\n", s1);
-	printf("%s\n", s2);
 	while (len-- > 0)
 	{
 		tmp1 = (unsigned char) *s1++;

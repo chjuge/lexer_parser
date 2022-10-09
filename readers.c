@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_reader.c                                     :+:      :+:    :+:   */
+/*   readers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 14:07:30 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:23:23 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void	read_tokens(t_token *t)
 {
 	// printf("--> in read_tokens\n");
-	printf("type	%d	len	%d	ptr	%p	content	%s	\n", t->type, t->len, t->ptr, t->content);
-	while (t->next)
+	while (t)
 	{
+		printf("type	%d	len	%d	ptr	%p	content	'%s'	\n", t->type, t->len, t->ptr, t->content);
 		t = t->next;
-		printf("type	%d	len	%d	ptr	%p	content	%s	\n", t->type, t->len, t->ptr, t->content);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 15:43:24 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:07:33 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ void	parse_tokens(t_token *t, char **envp)
 	optimize_delims(&t); // удаляем излишние токены-разделители UPD: УДАЛЯЕМ ВСЕ разделители
 	printf("read_tokens\n");
 	read_tokens(t);
-	//syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
+	syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
+	printf("syntax is ok!\n");
 }

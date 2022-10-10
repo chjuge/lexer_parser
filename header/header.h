@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 18:35:29 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:20:14 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,21 @@ typedef struct s_keysearch   // структура для отработки $
 /* структура из результатов парсинга. из них нужно будет сделать склейку с переменными окружения для запуска в execve() */
 typedef struct		s_cmd
 {
-	int				str_len;	//длина строки команды. пригодится, когда нужно будет перебирать с вариантами окружения
-	int				ind;		//индекс. пока не уверен, что понадобилтся, но проще его будет просто убрать
-	char			*str_cmd;	//сама команда, с относительным/абсолютным/кратким путем
+	char			*cmd;	//сама команда, с относительным/абсолютным/кратким путем
 	char			**args;		//аргументы программы
-	char			red_in;
-	char			red_out;
+	t_red			*red_g;
+	t_red			*red_gg;
+	t_red			*red_l;
+	t_red			*red_ll;
 	struct s_cmd	*next;
 }					t_cmd;
+
+typedef struct s_red
+{
+	struct s_res	*next;
+	char			*word;
+}		t_red;
+
 
 // rrr.c
 size_t	ft_strlen(const char *s);
@@ -90,17 +97,19 @@ int	ft_strncmp(const char *s1, const char *s2, size_t len);
 char	*ft_strdup(const char *str);
 void	ft_strcpy(char *dst, char *src, int cnt);
 
-//token.c
+//t_token.c
 t_token	*init_token(void);
 void	add_back_token(t_token **lst, t_token *new);
 void	free_token(t_token *t);
 void	free_tokens_all(t_token *t);
 
-
+//main.c
 int		string_run(char *str, char **envp);
 int		check_sp_ch(char c);
 t_token	*create_token(char *ptr, int *i);
 void	token_by_type(t_token *t, int *i);
+
+//f_token_by_type.c
 void	token_word(t_token *t, int *i);
 void	token_quo(t_token *t, int *i);
 void	token_dquo(t_token *t, int *i);
@@ -151,6 +160,18 @@ void	token_quo(t_token *t, int *i);
 void	token_dquo(t_token *t, int *i);
 void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
+
+//t_red.c
+t_red	*init_red(void);
+void	add_back_red(t_red **lst, t_red *new);
+void	free_red(t_red *t);
+void	free_reds_all(t_red *t);
+
+//t_cmd.c
+t_cmd	*init_cmd(void);
+void	add_back_cmd(t_cmd **lst, t_cmd *new);
+void	free_cmd(t_cmd *t);
+void	free_cmds_all(t_cmd *t);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:27:32 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:33:49 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_cmd	*init_cmd(void)
 
 	res = malloc(sizeof(t_cmd));
 	res->cmd = NULL;
+	res->params = NULL;
 	res->red_g = NULL;
 	res->red_gg = NULL;
 	res->red_l = NULL;

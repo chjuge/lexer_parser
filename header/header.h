@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 14:20:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:13:26 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct		s_cmd
 {
 	char			*cmd;	//сама команда, с относительным/абсолютным/кратким путем
 	char			**args;		//аргументы программы
+	t_param			*params;
 	t_red			*red_g;
 	t_red			*red_gg;
 	t_red			*red_l;
@@ -82,14 +83,21 @@ typedef struct		s_cmd
 	struct s_cmd	*next;
 }					t_cmd;
 
+typedef struct s_param
+{
+	struct s_param	*next;
+	char			*content;
+}					t_param;
+
+
 typedef struct s_red
 {
 	struct s_res	*next;
 	char			*word;
-}		t_red;
+}					t_red;
 
 
-// rrr.c
+//rrr.c
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
@@ -125,9 +133,11 @@ void	read_tokens(t_token *t);
 void	read_env(t_env *env);
 void	read_ks(t_keysearch *ks);
 
+//t_enc.c
 t_env	*init_env(void);
 void		add_back_env(t_env **lst, t_env *new);
 
+//t_group.c
 t_group		*init_group(void);
 void		add_back_group(t_group **lst, t_group *new);
 
@@ -172,6 +182,15 @@ t_cmd	*init_cmd(void);
 void	add_back_cmd(t_cmd **lst, t_cmd *new);
 void	free_cmd(t_cmd *t);
 void	free_cmds_all(t_cmd *t);
+
+//f_token_to_cmd.c
+t_cmd	*token_to_cmd(t_token *t);
+
+//t_param.c
+t_param	*init_param(char *s);
+void	add_back_param(t_param **lst, t_param *new);
+void	free_param(t_param *t);
+void	free_params_all(t_param *t);
 
 #endif
 

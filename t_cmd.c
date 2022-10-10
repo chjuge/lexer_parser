@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 14:18:52 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:27:32 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	add_back_cmd(t_cmd **lst, t_cmd *new)
 
 void	free_cmd(t_cmd *t)
 {
+	(void)t;
 	// TODO
 }
 

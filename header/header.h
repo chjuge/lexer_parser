@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:13:26 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:31:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,19 @@ typedef struct s_keysearch   // структура для отработки $
 	int					len;
 }						t_keysearch;
 
+typedef struct s_param
+{
+	struct s_param	*next;
+	char			*content;
+}					t_param;
+
+
+typedef struct s_red
+{
+	struct s_red	*next;
+	char			*word;
+}					t_red;
+
 /* структура из результатов парсинга. из них нужно будет сделать склейку с переменными окружения для запуска в execve() */
 typedef struct		s_cmd
 {
@@ -82,19 +95,6 @@ typedef struct		s_cmd
 	t_red			*red_ll;
 	struct s_cmd	*next;
 }					t_cmd;
-
-typedef struct s_param
-{
-	struct s_param	*next;
-	char			*content;
-}					t_param;
-
-
-typedef struct s_red
-{
-	struct s_res	*next;
-	char			*word;
-}					t_red;
 
 
 //rrr.c

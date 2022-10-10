@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:16:01 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:27:24 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	add_red_to_cmd(t_cmd *cmd, int flag)
 {
-	
+	(void)cmd;
+	(void)flag;
 }
 
 t_cmd	*token_to_cmd(t_token *t)

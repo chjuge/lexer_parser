@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:31:10 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:08:31 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_param
 
 typedef struct s_red
 {
-	struct s_red	*next;
+	struct s_red	*next; //delete
 	char			*word;
 }					t_red;
 
@@ -89,10 +89,10 @@ typedef struct		s_cmd
 	char			*cmd;	//сама команда, с относительным/абсолютным/кратким путем
 	char			**args;		//аргументы программы
 	t_param			*params;
-	t_red			*red_g;
-	t_red			*red_gg;
-	t_red			*red_l;
-	t_red			*red_ll;
+	char			*red_g;
+	char			*red_gg;
+	char			*red_l;
+	char			*red_ll;
 	struct s_cmd	*next;
 }					t_cmd;
 
@@ -194,4 +194,9 @@ void	free_params_all(t_param *t);
 
 #endif
 
-// gcc -Wall -Wextra -Werror -lreadline *.c      
+// gcc -Wall -Wextra -Werror -lreadline *.c     
+
+// когда иниц fd
+// когда игнорить built-in и как юзать с пайпами
+
+// todo: удалить в конце t_red и файл

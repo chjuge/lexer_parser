@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:47:29 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:17:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,12 @@ void	add_red_to_cmd(t_cmd *cmd, int flag, char *content)
 
 	tmp = init_red(content);
 	if (flag == REDGINT)
-		// cmd->red_g = str;
-		// rewrite_red(&(cmd->red_g), content);
 		add_back_red(&(cmd->red_g), tmp);
 	else if (flag == REDGGINT)
-		// cmd->red_gg = str;
-		// rewrite_red(&(cmd->red_gg), content);
 		add_back_red(&(cmd->red_gg), tmp);
 	else if (flag == REDLINT)
-		// cmd->red_l = str;
-		// rewrite_red(&(cmd->red_l), content);
 		add_back_red(&(cmd->red_l), tmp);
 	else
-		// cmd->red_ll = str;
-		// rewrite_red(&(cmd->red_ll), content);
 		add_back_red(&(cmd->red_ll), tmp);
 }
 
@@ -80,7 +72,6 @@ t_cmd	*token_to_cmd(t_token *t)
 	cmd = NULL;
 	tmp = init_cmd();
 	param = NULL;
-	// printf("vhozhu v cickl\n");
 	while (t)
 	{
 		if (t->type == WORDINT)
@@ -109,7 +100,6 @@ t_cmd	*token_to_cmd(t_token *t)
 			flag_red = t->type;
 		t = t->next;
 	}
-	// printf("vishel is cickla\n");
 	tmp->cmd = ft_strdup(param->content);
 	tmp->args = parse_args(param);
 	add_back_cmd(&cmd, tmp);

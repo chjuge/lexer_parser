@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 15:32:05 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:24:47 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,10 @@
 
 void	read_tokens(t_token *t)
 {
-	// printf("--> in read_tokens\n");
 	while (t)
 	{
 		printf("type	%d	len	%d	ptr	%p	content	'%s'	\n", t->type, t->len, t->ptr, t->content);
 		t = t->next;
-	}
-}
-
-void	fill_content(t_token *t)
-{
-	// printf("--> in fill_content\n"); 
-	char	*content;
-	int		i;
-
-	content = malloc(t->len + 1);
-	content[t->len] = ENDL;
-	i = 0;
-	// printf("voshel v cicle kopirovaniya\n");
-	while (i < t->len)
-	{
-		// write(1, t->ptr+i, 1);
-		content[i] = t->ptr[i];
-		i++;
-	}
-	// printf("\n");
-	t->content = content;
-}
-
-void	fill_content_all(t_token *t)
-{
-	fill_content(t);
-	while (t->next)
-	{
-		t = t->next;
-		fill_content(t);
 	}
 }
 
@@ -67,5 +36,48 @@ void	read_ks(t_keysearch *ks)
 	{
 		printf("key:	%s,		value:	%s\n", ks->key, ks->value);
 		ks = ks->next;
+	}
+}
+
+void	read_red_all(t_red *r)
+{
+	if (!r)
+		printf("%s\n", (char*)NULL);
+	else
+	{
+		while (r)
+		{
+			printf("%s\n", r->word);
+			r = r->next;
+		}
+	}
+}
+
+void	read_cmd(t_cmd *cmd)
+{
+	printf("the command:	%s\n", cmd->cmd);
+	printf("args array:\n");
+	while (*(cmd->args))
+	{
+		printf("%s\n", *(cmd->args));
+		(cmd->args)++;
+	}
+	printf("------\n");
+	printf("red_g: \n");
+	read_red_all(cmd->red_g);
+	printf("red_gg: \n");
+	read_red_all(cmd->red_gg);
+	printf("red_l: \n");
+	read_red_all(cmd->red_l);
+	printf("red_ll: \n");
+	read_red_all(cmd->red_ll);
+}
+
+void	read_cmds_all(t_cmd *cmd)
+{
+	while (cmd)
+	{
+		read_cmd(cmd);
+		cmd = cmd->next;
 	}
 }

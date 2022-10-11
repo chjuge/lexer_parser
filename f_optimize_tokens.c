@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 15:52:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:00:08 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	optimize_delims(t_token **t)
 		while (tmp && tmp->type == DELINT)
 		{
 			curr = tmp;
-			tmp = tmp->next; //null
+			tmp = tmp->next;
 			if (prev)
 				delite_curr_token(curr, prev);
 			else
@@ -53,11 +53,10 @@ void	optimize_delims(t_token **t)
 				free_token(curr);
 			}
 		}
-		// printf("padaet\n");
 		if (tmp)
 		{
-		prev = tmp;
-		tmp = tmp->next;
+			prev = tmp;
+			tmp = tmp->next;
 		}
 	}
 }
@@ -72,14 +71,8 @@ void	token_cat(t_token *curr, t_token *next)
 	{
 		new_s = malloc (len + 1);
 		new_s[len] = ENDL;
-		// ft_strlcat(new_s, curr->content, len + 1);
-		// printf("curr, len	%d	%s\n", curr->len, curr->content);
-		// printf("next, len	%d	%s\n", next->len, next->content);
 		ft_strcpy(new_s, curr->content, curr->len);
-		// printf("novaya stroka (1)---> %s\n", new_s);
-		// ft_strlcat(new_s, next->content, len + 1);
 		ft_strcpy(new_s + curr->len, next->content, next->len);
-		printf("novaya stroka ---> %s\n", new_s);
 		free(curr->content);
 		curr->content = new_s;
 		curr->len = len;
@@ -88,7 +81,6 @@ void	token_cat(t_token *curr, t_token *next)
 
 void	optimize_words(t_token *t)
 {
-	// int i = 0;
 	while (t)
 	{
 		while (t && t->type != WORDINT)
@@ -97,7 +89,6 @@ void	optimize_words(t_token *t)
 			break ;
 		while (t->next && t->next->type == WORDINT)
 		{
-			// printf("in cycle %d\n", ++i);
 			token_cat(t, t->next);
 			delite_next_token(t, t->next);
 		}

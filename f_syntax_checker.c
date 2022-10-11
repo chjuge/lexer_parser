@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:31:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 15:31:40 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:14:36 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	*to_str(int i)
 		return (">");
 	if (i == REDGGINT)
 		return (">>");
-	// if (i == PIPEINT)
-		return ("|");
+	return ("|");
 }
 
 void	print_parse_error(char *s)

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:13:42 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:51:52 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*get_line(char *s) // используем readline для получения строки
 {
-	// printf("--> in get_line\n");
 	char	*str;
 	
 	if (s)
@@ -27,7 +26,6 @@ char	*get_line(char *s) // используем readline для получени
 
 int	main(int argc, char** argv, char **envp)
 {
-	// printf("--> in main\n");
 	char	*str;
 	t_cmd	*cmd;
 
@@ -43,7 +41,6 @@ int	main(int argc, char** argv, char **envp)
 
 t_cmd	*string_run(char *str, char **envp) // обрабатываем строку, получаем токены
 {
-	// printf("--> in string_run\n");
 	int		i;
 	t_token	*t;
 	t_token *tmp;
@@ -56,68 +53,8 @@ t_cmd	*string_run(char *str, char **envp) // обрабатываем строк
 	{
 		tmp = create_token(str + i, &i);
 		add_back_token(&t, tmp);
-		// printf("%c", str[i]);
-		// i++;
 	}
 	fill_content_all(t);
-	// read_tokens(t);
 	cmd = parse_tokens(t, envp);
-	// printf("\n");
 	return (cmd);
-}
-
-int	check_sp_ch(char c) // проверяем на специальные символы
-{
-	// printf("--> in check_sp_ch\n");
-	if (c == QUO)
-		return (QUOINT);
-	else if (c == DQUO)
-		return (DQUOINT);
-	else if (c == PIPE)
-		return (PIPEINT);
-	else if (c == DEL)
-		return (DELINT);
-	else if (c == REDG)
-		return (REDGINT);
-	else if (c == REDL)
-		return (REDLINT);
-	else if (c == ENDL)
-		return (-1);
-	return (WORDINT);
-}
-
-void	token_by_type(t_token *t, int *i)  // создаем токен в зависимости от типа
-{
-	// printf("--> in token_by_type\n");
-	if (t->type == WORDINT)
-		token_word(t, i);
-	else if (t->type == DELINT)
-		token_del(t, i);
-	else if (t->type == PIPEINT)
-		token_pipe(t, i);
-	else if (t->type == QUOINT)
-		token_quo(t, i);
-	else if (t->type == DQUOINT)
-		token_dquo(t, i);
-	else if (t->type == REDGINT)
-		token_redg(t, i);
-	else if (t->type == REDLINT)
-		token_redl(t, i);
-	else
-	{
-		printf("Something got wrong! No right token\n");
-		exit(1);
-	}
-}
-
-t_token	*create_token(char *ptr, int *i)
-{
-	// printf("--> in create_token\n");
-	t_token	*new_token;
-
-	new_token = init_token();
-	new_token->ptr = ptr;
-	new_token->type = check_sp_ch(ptr[0]);
-	token_by_type(new_token, i);
-	return (new_token);
 }

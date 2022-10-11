@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:24:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:26:59 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	free_cmd(t_cmd *cmd)
 	while (cmd)
 	{
 		free(cmd->cmd);
-		free_argc(cmd->args); //todo
+		// free_argc(cmd->args); //todo
 		free_reds_all(cmd->red_g);
 		free_reds_all(cmd->red_gg);
 		free_reds_all(cmd->red_l);

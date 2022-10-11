@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:06:00 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:45:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ t_cmd	*token_to_cmd(t_token *t)
 	t_cmd	*cmd;
 	t_cmd	*tmp;
 	t_param	*tmp_p;
+	t_param	*param;
 	int		flag_red;
 
 	flag_red = 0;
 	cmd = NULL;
 	tmp = init_cmd();
-	// printf("vhozhu v cickl\n");
+	param = NULL;
+	printf("vhozhu v cickl\n");
 	while (t)
 	{
 		if (t->type == WORDINT)
@@ -86,7 +88,7 @@ t_cmd	*token_to_cmd(t_token *t)
 			if (flag_red == 0)
 			{
 				tmp_p = init_param(t->content);
-				add_back_param(&(tmp->params), tmp_p);
+				add_back_param(&param, tmp_p);
 			}
 			else
 			{
@@ -96,8 +98,10 @@ t_cmd	*token_to_cmd(t_token *t)
 		}
 		else if (t->type == PIPEINT)
 		{
-			cmd->cmd = ft_strdup(cmd->params->content);
-			cmd->args = parse_args(cmd->params);
+			tmp->cmd = ft_strdup(param->content);
+			tmp->args = parse_args(param);
+			free_params_all(param);
+			param = NULL;
 			add_back_cmd(&cmd, tmp);
 			tmp = init_cmd();
 		}
@@ -105,9 +109,10 @@ t_cmd	*token_to_cmd(t_token *t)
 			flag_red = t->type;
 		t = t->next;
 	}
-	// printf("vishel is cickla\n");
+	printf("vishel is cickla\n");
+	tmp->cmd = ft_strdup(param->content);
+	tmp->args = parse_args(param);
 	add_back_cmd(&cmd, tmp);
-	cmd->cmd = ft_strdup(cmd->params->content);
-	cmd->args = parse_args(cmd->params);
+	free_params_all(param);
 	return (cmd);
 }

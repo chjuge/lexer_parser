@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:13:52 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:26:24 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ typedef struct		s_cmd
 {
 	char			*cmd;	//сама команда, с относительным/абсолютным/кратким путем
 	char			**args;		//аргументы программы
-	t_param			*params;
 	t_red			*red_g;
 	t_red			*red_gg;
 	t_red			*red_l;
 	t_red			*red_ll;
 	struct s_cmd	*next;
+	// t_param			*params;
 }					t_cmd;
 
 

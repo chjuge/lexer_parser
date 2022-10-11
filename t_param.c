@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:06:49 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 16:27:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:25:46 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_param	*init_param(char *s)
 
 t_param *param_last(t_param *lst)
 {
-	printf("param_last\n");
+	// printf("param_last\n");
 	if (!lst)
 		return (0);
 	while (lst->next)

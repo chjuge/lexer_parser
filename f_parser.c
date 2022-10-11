@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 16:54:17 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:05:42 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,29 +119,29 @@ void	redefine_quo(t_token *t)
 	}
 }
 
-void	parse_tokens(t_token *t, char **envp)
+t_cmd	*parse_tokens(t_token *t, char **envp)
 {
 	t_cmd *cmd;
 
-	read_tokens(t);
-	printf("redefine_dquo\n");
+	// read_tokens(t);
+	// printf("redefine_dquo\n");
 	redefine_dquo(t); // тип "" в тип слов
-	printf("redefine_$\n");
+	// printf("redefine_$\n");
 	redefine_$(t, envp); // раскрываем слова
-	printf("redefine_quo\n");
+	// printf("redefine_quo\n");
 	redefine_quo(t); // '' в тип слов
-	printf("optimize_words\n");
+	// printf("optimize_words\n");
 	optimize_words(t); // склеиваем токены, если рядом тип слова
-	read_tokens(t);	
-	printf("optimize_delims\n");
+	// read_tokens(t);	
+	// printf("optimize_delims\n");
 	optimize_delims(&t); // удаляем излишние токены-разделители UPD: УДАЛЯЕМ ВСЕ разделители
-	printf("read_tokens\n");
-	read_tokens(t);
-	printf("syntax_checker\n");
+	// printf("read_tokens\n");
+	// read_tokens(t);
+	// printf("syntax_checker\n");
 	syntax_checker(t); // проверяем последовательность токенов на допустимый синтаксис
-	printf("syntax is ok!\n");
+	// printf("syntax is ok!\n");
 
 	cmd = token_to_cmd(t);
-	printf("->>cmd parsed!\n");
-	read_cmds_all(cmd);
+	// printf("->>cmd parsed!\n");
+	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:06:49 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:13:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:27:16 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_param	*init_param(char *s)
 
 t_param *param_last(t_param *lst)
 {
+	printf("param_last\n");
 	if (!lst)
 		return (0);
 	while (lst->next)
@@ -35,16 +36,28 @@ void	add_back_param(t_param **lst, t_param *new)
 {
 	t_param	*tmp;
 
+	// printf("add_back_param	%p\n", lst);
 	if (!lst)
-		return ;
-	tmp = *lst;
-	if (!tmp)
 	{
-		*lst = new;
+		// printf("lst -> NULL\n");
 		return ;
 	}
+	// printf("0\n");
+	tmp = *lst;
+	// tmp = NULL;
+	// printf("1\n");
+	if (!tmp)
+	{
+		// printf("10\n");
+		*lst = new;
+		// printf("11\n");
+		return ;
+	}
+	// printf("2\n");
 	tmp = param_last(tmp);
+	// printf("3\n");
 	tmp->next = new;
+	// printf("4\n");
 }
 
 void	free_param(t_param *t)

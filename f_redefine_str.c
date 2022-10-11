@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redefine_str.c                                     :+:      :+:    :+:   */
+/*   f_redefine_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 15:52:23 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:06:08 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	redefine_full(t_token *t, t_env *envf)
 /* если ключ в куске совпадает с ключом окружения то ставим флаг на замену */
 		while (flag == 0 && env)						
 		{
-			if (ft_strncmp(tmp->key, env->key, tmp->len) == 0)
+			if (tmp->len == env->len_k && ft_strncmp(tmp->key, env->key, tmp->len) == 0)
 			{
 				flag = 1;
 				break ;

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 17:45:58 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:20:14 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	string_run(char *str, char **envp) // обрабатываем строку,
 		// i++;
 	}
 	fill_content_all(t);
-	read_tokens(t);
+	// read_tokens(t);
 	parse_tokens(t, envp);
 	// printf("\n");
 	return (i);

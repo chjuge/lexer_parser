@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   optimize_tokens.c                                  :+:      :+:    :+:   */
+/*   f_optimize_tokens.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 17:59:19 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:52:37 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	optimize_delims(t_token **t)
 		while (tmp && tmp->type == DELINT)
 		{
 			curr = tmp;
-			tmp = tmp->next;
+			tmp = tmp->next; //null
 			if (prev)
 				delite_curr_token(curr, prev);
 			else
@@ -53,8 +53,12 @@ void	optimize_delims(t_token **t)
 				free_token(curr);
 			}
 		}
+		// printf("padaet\n");
+		if (tmp)
+		{
 		prev = tmp;
 		tmp = tmp->next;
+		}
 	}
 }
 

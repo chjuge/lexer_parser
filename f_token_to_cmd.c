@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 19:15:29 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:53:02 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,53 @@ void	rewrite_red(char **old, char *new)
 	(*old) = ft_strdup(new);	
 }
 
+char	**parse_args(t_param	*p)
+{
+	int 	count;
+	int		i;
+	t_param	*tmp;
+	char	**arr;
+
+	tmp = p;
+	count = 0;
+	while (tmp)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	arr = malloc(sizeof(char*) * (count + 1));
+	i = 0;
+	while (i < count)
+	{
+		arr[i] = ft_strdup(p->content);
+		p = p->next;
+		i++;
+	}
+	arr[i] = NULL;
+	return (arr);
+}
+
 void	add_red_to_cmd(t_cmd *cmd, int flag, char *content)
 {
+	t_red	*tmp;
+
+	tmp = init_red(content);
 	if (flag == REDGINT)
 		// cmd->red_g = str;
-		rewrite_red(&(cmd->red_g), content);
+		// rewrite_red(&(cmd->red_g), content);
+		add_back_red(&(cmd->red_g), tmp);
 	else if (flag == REDGGINT)
 		// cmd->red_gg = str;
-		rewrite_red(&(cmd->red_gg), content);
+		// rewrite_red(&(cmd->red_gg), content);
+		add_back_red(&(cmd->red_gg), tmp);
 	else if (flag == REDLINT)
 		// cmd->red_l = str;
-		rewrite_red(&(cmd->red_l), content);
+		// rewrite_red(&(cmd->red_l), content);
+		add_back_red(&(cmd->red_l), tmp);
 	else
 		// cmd->red_ll = str;
-		rewrite_red(&(cmd->red_ll), content);
+		// rewrite_red(&(cmd->red_ll), content);
+		add_back_red(&(cmd->red_ll), tmp);
 }
 
 t_cmd	*token_to_cmd(t_token *t)
@@ -40,29 +73,22 @@ t_cmd	*token_to_cmd(t_token *t)
 	t_cmd	*cmd;
 	t_cmd	*tmp;
 	t_param	*tmp_p;
-	int		flag_cmd;
 	int		flag_red;
 
-	flag_cmd = 0;
 	flag_red = 0;
 	cmd = NULL;
 	tmp = init_cmd();
+	// printf("vhozhu v cickl\n");
 	while (t)
 	{
 		if (t->type == WORDINT)
 		{
 			if (flag_red == 0)
 			{
-				if (flag_cmd == 0)
-				{
-					flag_cmd = 1;
-					tmp->cmd = ft_strdup(t->content);
-				}
-				else
-				{
-					tmp_p = init_param(t->content);
-					add_back_param(&(cmd->params), tmp_p);
-				}
+				printf("1\n");
+				tmp_p = init_param(t->content);
+				printf("2\n");
+				add_back_param(&(tmp->params), tmp_p);
 			}
 			else
 			{
@@ -72,15 +98,18 @@ t_cmd	*token_to_cmd(t_token *t)
 		}
 		else if (t->type == PIPEINT)
 		{
-			//todo
+			cmd->cmd = ft_strdup(cmd->params->content);
+			cmd->args = parse_args(cmd->params);
 			add_back_cmd(&cmd, tmp);
 			tmp = init_cmd();
-			flag_cmd = 0;
 		}
 		else
 			flag_red = t->type;
 		t = t->next;
 	}
+	// printf("vishel is cickla\n");
 	add_back_cmd(&cmd, tmp);
+	cmd->cmd = ft_strdup(cmd->params->content);
+	cmd->args = parse_args(cmd->params);
 	return (cmd);
 }

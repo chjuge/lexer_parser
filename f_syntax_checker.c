@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_checker.c                                   :+:      :+:    :+:   */
+/*   f_syntax_checker.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:31:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/09 17:17:48 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:31:40 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	syntax_checker(t_token *t)
 {
 	t_token	*prev;
 
+	if (!t)
+		return ;
 	if (t->type == PIPEINT)
 		print_parse_error(to_str(PIPEINT));
 	prev = t;

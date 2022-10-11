@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 19:08:31 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:06:37 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ typedef struct		s_cmd
 	char			*cmd;	//сама команда, с относительным/абсолютным/кратким путем
 	char			**args;		//аргументы программы
 	t_param			*params;
-	char			*red_g;
-	char			*red_gg;
-	char			*red_l;
-	char			*red_ll;
+	t_red			*red_g;
+	t_red			*red_gg;
+	t_red			*red_l;
+	t_red			*red_ll;
 	struct s_cmd	*next;
 }					t_cmd;
 
@@ -172,7 +172,7 @@ void	token_redg(t_token *t, int *i);
 void	token_redl(t_token *t, int *i);
 
 //t_red.c
-t_red	*init_red(void);
+t_red	*init_red(char	*content);
 void	add_back_red(t_red **lst, t_red *new);
 void	free_red(t_red *t);
 void	free_reds_all(t_red *t);
@@ -182,6 +182,7 @@ t_cmd	*init_cmd(void);
 void	add_back_cmd(t_cmd **lst, t_cmd *new);
 void	free_cmd(t_cmd *t);
 void	free_cmds_all(t_cmd *t);
+void	read_cmds_all(t_cmd *cmd);
 
 //f_token_to_cmd.c
 t_cmd	*token_to_cmd(t_token *t);
@@ -200,3 +201,18 @@ void	free_params_all(t_param *t);
 // когда игнорить built-in и как юзать с пайпами
 
 // todo: удалить в конце t_red и файл
+
+//форк для сигналов
+//heredoc во временные файлы
+//обязательно в параметрах должно лежать имя команды v [0]
+//heredoc - отрабатывается отдельно, до команд, создаются временные файлы, свои коды выхода, сигналы работают как в баше
+//все-таки нужно запоминать все перенаправления, т.к. все равно придется проверять файлы на доступность
+//и возвращаться соответственную ошибку
+//в случае отсутствия отсутствия синтаксической ошибки каждый пайп отрабатывает независимо
+//на кадый ненайденный файл выводится отдельное оповещение (1 на каждый пайп)
+//если файл не найден/другая ошибка, и таких файлов несколько на пайп - отрабатывает оповещение только на первый
+//при этом файлы, которые создают редирекшены - не создаются
+//execve - stat(проверка на директори)
+
+
+//1) падает при образовании команды

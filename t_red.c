@@ -6,19 +6,19 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:02:07 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 14:13:02 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:51:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_red	*init_red(void)
+t_red	*init_red(char	*content)
 {
 	t_red	*res;
 
 	res = malloc(sizeof(t_red));
 	res->next = NULL;
-	res->word = NULL;
+	res->word = ft_strdup(content);
 	return (res);
 }
 

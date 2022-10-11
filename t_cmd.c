@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/10 16:33:49 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:56:52 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,50 @@ void	free_cmds_all(t_cmd *t)
 		tmp = t;
 		t = t->next;
 		free_cmd(tmp);
+	}
+}
+
+void	print_all_red(t_red *r)
+{
+	if (!r)
+		printf("%s\n", (char*)NULL);
+	else
+	{
+		while (r)
+		{
+			printf("%s\n", r->word);
+			r = r->next;
+		}
+	}
+}
+
+void	read_cmd(t_cmd *cmd)
+{
+	printf("the command:	%s\n", cmd->cmd);
+	printf("args array:\n");
+	while (*(cmd->args))
+	{
+		usleep(10000);
+		printf("%s\n", *(cmd->args));
+		(cmd->args)++;
+	}
+	printf("------\n");
+	printf("red_g: \n");
+	print_all_red(cmd->red_g);
+	printf("red_gg: \n");
+	print_all_red(cmd->red_gg);
+	printf("red_l: \n");
+	print_all_red(cmd->red_l);
+	printf("red_ll: \n");
+	print_all_red(cmd->red_ll);
+}
+
+void	read_cmds_all(t_cmd *cmd)
+{
+	while (cmd)
+	{
+		usleep(10000);
+		read_cmd(cmd);
+		cmd = cmd->next;
 	}
 }

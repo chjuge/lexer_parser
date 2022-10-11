@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:45:10 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:47:29 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_cmd	*token_to_cmd(t_token *t)
 	cmd = NULL;
 	tmp = init_cmd();
 	param = NULL;
-	printf("vhozhu v cickl\n");
+	// printf("vhozhu v cickl\n");
 	while (t)
 	{
 		if (t->type == WORDINT)
@@ -109,7 +109,7 @@ t_cmd	*token_to_cmd(t_token *t)
 			flag_red = t->type;
 		t = t->next;
 	}
-	printf("vishel is cickla\n");
+	// printf("vishel is cickla\n");
 	tmp->cmd = ft_strdup(param->content);
 	tmp->args = parse_args(param);
 	add_back_cmd(&cmd, tmp);

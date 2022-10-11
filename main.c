@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:04:24 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:13:42 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,19 @@ int	main(int argc, char** argv, char **envp)
 {
 	// printf("--> in main\n");
 	char	*str;
+	t_cmd	*cmd;
 
 	(void)argc;
 	(void)argv;
 	str = NULL;
-	// while(1)
-	// {
-		str = get_line(str);
-		printf("inputed string: '%s'\n", str);
-		string_run(str, envp);
-	// 	if (str == NULL)
-	// 		break ;
-	// }
+	str = get_line(str);
+	printf("inputed string: '%s'\n", str);
+	cmd = string_run(str, envp);
+	read_cmds_all(cmd);
 	return (0);
 }
 
-int	string_run(char *str, char **envp) // обрабатываем строку, получаем токены
+t_cmd	*string_run(char *str, char **envp) // обрабатываем строку, получаем токены
 {
 	// printf("--> in string_run\n");
 	int		i;
@@ -65,9 +62,8 @@ int	string_run(char *str, char **envp) // обрабатываем строку,
 	fill_content_all(t);
 	// read_tokens(t);
 	cmd = parse_tokens(t, envp);
-	read_cmds_all(cmd);
 	// printf("\n");
-	return (i);
+	return (cmd);
 }
 
 int	check_sp_ch(char c) // проверяем на специальные символы

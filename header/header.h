@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 17:03:48 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:13:52 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	free_token(t_token *t);
 void	free_tokens_all(t_token *t);
 
 //main.c
-int		string_run(char *str, char **envp);
+t_cmd	*string_run(char *str, char **envp);
 int		check_sp_ch(char c);
 t_token	*create_token(char *ptr, int *i);
 void	token_by_type(t_token *t, int *i);

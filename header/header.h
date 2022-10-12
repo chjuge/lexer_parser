@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:50:56 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:01:18 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,20 @@ typedef struct s_keysearch
 	int					len;
 }						t_keysearch;
 
-typedef struct s_param
+typedef struct s_word
 {
-	struct s_param	*next;
-	char			*content;
-}					t_param;
-
-
-typedef struct s_red
-{
-	struct s_red	*next;
+	struct s_word	*next;
 	char			*word;
-}					t_red;
+}					t_word;
 
 typedef struct		s_cmd
 {
 	char			*cmd;
 	char			**args;
-	t_red			*red_g;
-	t_red			*red_gg;
-	t_red			*red_l;
-	t_red			*red_ll;
+	t_word			*red_g;
+	t_word			*red_gg;
+	t_word			*red_l;
+	t_word			*red_ll;
 	struct s_cmd	*next;
 }					t_cmd;
 
@@ -119,7 +112,7 @@ void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
 void	read_env(t_env *env);
 void	read_ks(t_keysearch *ks);
-void	read_red_all(t_red *r);
+void	read_red_all(t_word *r);
 void	free_cmds_all(t_cmd *t);
 void	read_cmds_all(t_cmd *cmd);
 /*	t_env.c	*/
@@ -141,22 +134,17 @@ void	optimize_delims(t_token **t);
 void	optimize_words(t_token *t);
 /*	syntax_checker.c	*/
 void	syntax_checker(t_token *t);
-/*	t_red.c	*/
-t_red	*init_red(char	*content);
-void	add_back_red(t_red **lst, t_red *new);
-void	free_red(t_red *t);
-void	free_reds_all(t_red *t);
+/*	t_word.c	*/
+t_word	*init_word(char	*content);
+void	add_back_word(t_word **lst, t_word *new);
+void	free_word(t_word *t);
+void	free_words_all(t_word *t);
 /*	t_cmd.c	*/
 t_cmd	*init_cmd(void);
 void	add_back_cmd(t_cmd **lst, t_cmd *new);
 void	free_cmd(t_cmd *t);
 /*	f_token_to_cmd.c	*/
 t_cmd	*token_to_cmd(t_token *t);
-/*	t_param.c	*/
-t_param	*init_param(char *s);
-void	add_back_param(t_param **lst, t_param *new);
-void	free_param(t_param *t);
-void	free_params_all(t_param *t);
 /*	f_free_array.c	*/
 void	free_array(char **arr);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 15:32:45 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:01:58 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rewrite_red(char **old, char *new)
 	(*old) = ft_strdup(new);	
 }
 
-int	find_count(t_param *tmp)
+int	find_count(t_word *tmp)
 {
 	int	count;
 
@@ -32,7 +32,7 @@ int	find_count(t_param *tmp)
 	return (count);
 }
 
-char	**parse_args(t_param	*p)
+char	**parse_args(t_word	*p)
 {
 	int 	count;
 	int		i;
@@ -44,7 +44,7 @@ char	**parse_args(t_param	*p)
 	i = 0;
 	while (i < count)
 	{
-		arr[i] = ft_strdup(p->content);
+		arr[i] = ft_strdup(p->word);
 		p = p->next;
 		i++;
 	}
@@ -53,25 +53,25 @@ char	**parse_args(t_param	*p)
 
 void	add_red_to_cmd(t_cmd *cmd, int flag, char *content)
 {
-	t_red	*tmp;
+	t_word	*tmp;
 
-	tmp = init_red(content);
+	tmp = init_word(content);
 	if (flag == REDGINT)
-		add_back_red(&(cmd->red_g), tmp);
+		add_back_word(&(cmd->red_g), tmp);
 	else if (flag == REDGGINT)
-		add_back_red(&(cmd->red_gg), tmp);
+		add_back_word(&(cmd->red_gg), tmp);
 	else if (flag == REDLINT)
-		add_back_red(&(cmd->red_l), tmp);
+		add_back_word(&(cmd->red_l), tmp);
 	else
-		add_back_red(&(cmd->red_ll), tmp);
+		add_back_word(&(cmd->red_ll), tmp);
 }
 
 t_cmd	*token_to_cmd(t_token *t)
 {
 	t_cmd	*cmd;
 	t_cmd	*tmp;
-	t_param	*tmp_p;
-	t_param	*param;
+	t_word	*tmp_p;
+	t_word	*param;
 	int		flag_red;
 
 	flag_red = 0;
@@ -84,8 +84,8 @@ t_cmd	*token_to_cmd(t_token *t)
 		{
 			if (flag_red == 0)
 			{
-				tmp_p = init_param(t->content);
-				add_back_param(&param, tmp_p);
+				tmp_p = init_word(t->content);
+				add_back_word(&param, tmp_p);
 			}
 			else
 			{
@@ -95,9 +95,9 @@ t_cmd	*token_to_cmd(t_token *t)
 		}
 		else if (t->type == PIPEINT)
 		{
-			tmp->cmd = ft_strdup(param->content);
+			tmp->cmd = ft_strdup(param->word);
 			tmp->args = parse_args(param);
-			free_params_all(param);
+			free_words_all(param);
 			param = NULL;
 			add_back_cmd(&cmd, tmp);
 			tmp = init_cmd();
@@ -106,9 +106,9 @@ t_cmd	*token_to_cmd(t_token *t)
 			flag_red = t->type;
 		t = t->next;
 	}
-	tmp->cmd = ft_strdup(param->content);
+	tmp->cmd = ft_strdup(param->word);
 	tmp->args = parse_args(param);
 	add_back_cmd(&cmd, tmp);
-	free_params_all(param);
+	free_words_all(param);
 	return (cmd);
 }

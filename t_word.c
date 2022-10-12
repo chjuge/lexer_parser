@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_red.c                                            :+:      :+:    :+:   */
+/*   t_word.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:02:07 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 13:35:43 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:59:46 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_red	*init_red(char	*content)
+t_word	*init_word(char	*content)
 {
-	t_red	*res;
+	t_word	*res;
 
-	res = malloc(sizeof(t_red));
+	res = malloc(sizeof(t_word));
 	res->next = NULL;
 	res->word = ft_strdup(content);
 	return (res);
 }
 
-t_red *red_last(t_red *lst)
+t_word *word_last(t_word *lst)
 {
 	if (!lst)
 		return (0);
@@ -31,9 +31,9 @@ t_red *red_last(t_red *lst)
 	return (lst);
 }
 
-void	add_back_red(t_red **lst, t_red *new)
+void	add_back_word(t_word **lst, t_word *new)
 {
-	t_red	*tmp;
+	t_word	*tmp;
 
 	if (!lst)
 		return ;
@@ -43,20 +43,20 @@ void	add_back_red(t_red **lst, t_red *new)
 		*lst = new;
 		return ;
 	}
-	tmp = red_last(tmp);
+	tmp = word_last(tmp);
 	tmp->next = new;
 }
 
-void	free_red(t_red *t)
+void	free_word(t_word *t)
 {
 	if (t->word)
 		free(t->word);
 	free(t);
 }
 
-void	free_reds_all(t_red *t)
+void	free_words_all(t_word *t)
 {
-	t_red	*tmp;
+	t_word	*tmp;
 
 	if (t == NULL)
 		return ;
@@ -65,6 +65,6 @@ void	free_reds_all(t_red *t)
 	{
 		tmp = t;
 		t = t->next;
-		free_red(tmp);
+		free_word(tmp);
 	}
 }

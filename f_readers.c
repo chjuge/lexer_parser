@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 14:06:25 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:54:32 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	read_ks(t_keysearch *ks)
 	}
 }
 
-void	read_red_all(t_red *r)
+void	read_red_all(t_word *r)
 {
 	if (!r)
 		printf("%s\n", (char*)NULL);

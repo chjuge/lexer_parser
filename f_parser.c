@@ -6,23 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:01:49 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:30:17 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
-
-void	redefine_dquo(t_token *t)
-{
-	if (t->type == DQUOINT)
-		t->type = WORDINT;
-	while (t->next)
-	{
-		t = t->next;
-		if (t->type == DQUOINT)
-			t->type = WORDINT;		
-	}
-}
 
 void	get_kv(t_env *kv, char *str)
 {
@@ -103,11 +91,11 @@ void	redefine_$(t_token *t, char **envp)
 	}
 }
 
-void	redefine_quo(t_token *t)
+void	redefine_quo(t_token *t, int type)
 {
 	while (t)
 	{
-		if (t->type == QUOINT)
+		if (t->type == type)
 			t->type = WORDINT;
 		t = t->next;
 	}
@@ -117,9 +105,9 @@ t_cmd	*parse_tokens(t_token *t, char **envp)
 {
 	t_cmd *cmd;
 
-	redefine_dquo(t);
+	redefine_quo(t, DQUOINT);
 	redefine_$(t, envp);
-	redefine_quo(t);
+	redefine_quo(t, QUOINT);
 	optimize_words(t);
 	optimize_delims(&t);
 	syntax_checker(t);

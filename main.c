@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 18:51:52 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:28:07 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	main(int argc, char** argv, char **envp)
 	str = get_line(str);
 	printf("inputed string: '%s'\n", str);
 	cmd = string_run(str, envp);
-	read_cmds_all(cmd);
+	// read_cmds_all(cmd);
+	// free(str);
+	printf("%p\n", cmd->args);
+	free_cmds_all(cmd);
 	return (0);
 }
 
@@ -56,5 +59,6 @@ t_cmd	*string_run(char *str, char **envp) // обрабатываем строк
 	}
 	fill_content_all(t);
 	cmd = parse_tokens(t, envp);
+	free_tokens_all(t);
 	return (cmd);
 }

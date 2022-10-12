@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:24:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:06:25 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ void	read_red_all(t_red *r)
 
 void	read_cmd(t_cmd *cmd)
 {
+	int	i;
+
+	i = 0;
 	printf("the command:	%s\n", cmd->cmd);
 	printf("args array:\n");
-	while (*(cmd->args))
+	while ((cmd->args)[i])
 	{
-		printf("%s\n", *(cmd->args));
-		(cmd->args)++;
+		printf("%s\n", (cmd->args)[i]);
+		i++;
 	}
 	printf("------\n");
 	printf("red_g: \n");
@@ -75,9 +78,12 @@ void	read_cmd(t_cmd *cmd)
 
 void	read_cmds_all(t_cmd *cmd)
 {
-	while (cmd)
+	t_cmd	*tmp;
+
+	tmp = cmd;
+	while (tmp)
 	{
-		read_cmd(cmd);
-		cmd = cmd->next;
+		read_cmd(tmp);
+		tmp = tmp->next;
 	}
 }

@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_fill_content.c                                   :+:      :+:    :+:   */
+/*   f_free_array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 19:02:49 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 13:21:40 by mproveme         ###   ########.fr       */
+/*   Created: 2022/10/12 13:13:06 by mproveme          #+#    #+#             */
+/*   Updated: 2022/10/12 14:32:48 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-void	fill_content(t_token *t)
+void	free_array(char **arr)
 {
-	char	*content;
-	int		i;
+	int	i;
 
-	content = malloc(t->len + 1);
-	content[t->len] = ENDL;
+	if (!arr)
+		return ;
 	i = 0;
-	while (i < t->len)
+	printf ("arr	%p\n", *arr);
+	// printf("arr[0]	%p\n", arr[0]);
+	while (arr[i] != NULL)
 	{
-		content[i] = t->ptr[i];
+		printf("i --> %d	s	%s\n", i, arr[i]);
+		free(arr[i]);
 		i++;
 	}
-	t->content = content;
-}
-
-void	fill_content_all(t_token *t)
-{
-	while (t)
-	{
-		fill_content(t);
-		t = t->next;
-	}
+	printf("vishel	%p\n", arr);
+	free(arr);
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:17:56 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:06:33 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**parse_args(t_param	*p)
 		tmp = tmp->next;
 	}
 	arr = malloc(sizeof(char*) * (count + 1));
+	printf("arr -> %p\n", arr);
 	i = 0;
 	while (i < count)
 	{
@@ -91,6 +92,7 @@ t_cmd	*token_to_cmd(t_token *t)
 		{
 			tmp->cmd = ft_strdup(param->content);
 			tmp->args = parse_args(param);
+			printf("tmp->args	%p\n", tmp->args);
 			free_params_all(param);
 			param = NULL;
 			add_back_cmd(&cmd, tmp);
@@ -102,6 +104,7 @@ t_cmd	*token_to_cmd(t_token *t)
 	}
 	tmp->cmd = ft_strdup(param->content);
 	tmp->args = parse_args(param);
+	printf("tmp-> args	%p\n", tmp->args);
 	add_back_cmd(&cmd, tmp);
 	free_params_all(param);
 	return (cmd);

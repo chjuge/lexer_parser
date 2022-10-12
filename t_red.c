@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:02:07 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:22:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:35:43 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	free_reds_all(t_red *t)
 {
 	t_red	*tmp;
 
+	if (t == NULL)
+		return ;
 	tmp = t;
 	while (t)
 	{

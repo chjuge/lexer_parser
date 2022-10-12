@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:24:40 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:32:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct		s_cmd
 t_token	*create_token(char *ptr, int *i);
 void	token_by_type(t_token *t, int *i);
 int		check_sp_ch(char c);
-/*	f_supportings.c	*/
+/*	f_utils.c	*/
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
@@ -175,5 +175,7 @@ t_param	*init_param(char *s);
 void	add_back_param(t_param **lst, t_param *new);
 void	free_param(t_param *t);
 void	free_params_all(t_param *t);
+/*	f_free_array.c	*/
+void	free_array(char **arr);
 #endif
 // gcc -Wall -Wextra -Werror -lreadline *.c     

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:14:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:30:31 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,22 @@ void	parts_into_str(t_token *t, t_keysearch *ks)
 	t->len = len;
 }
 
+t_env	*check_key(t_env *env, t_keysearch *tmp, int *flag)
+{
+		while (*flag == 0 && env)						
+		{
+			if (tmp->len == env->len_k
+				&& ft_strncmp(tmp->key, env->key, tmp->len) == 0)
+			{
+				*flag = 1;
+				break ;
+			}
+			else
+				env = env->next;
+		}
+		return (env);
+}
+
 void	redefine_full(t_token *t, t_env *envf)
 {
 	t_keysearch	*ks;
@@ -113,20 +129,10 @@ void	redefine_full(t_token *t, t_env *envf)
 		tmp = tmp->next;
 	while (tmp)
 	{
-		env = envf;
-		while (flag == 0 && env)						
-		{
-			if (tmp->len == env->len_k && ft_strncmp(tmp->key, env->key, tmp->len) == 0)
-			{
-				flag = 1;
-				break ;
-			}
-			else
-				env = env->next;
-		}
+		env = check_key(envf, tmp, &flag);
 		redefine_value(tmp, env, flag);
 		tmp = tmp->next;
-		}
+	}
 	parts_into_str(t, ks);
 	free_keysearch(ks);
 }

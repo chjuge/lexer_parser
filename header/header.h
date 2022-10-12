@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:15:41 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:50:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ typedef struct s_env
 	int				len_k;
 	int				len_v;
 }					t_env;
-
-typedef struct s_group
-{
-	struct s_group	*g;
-	struct s_group	*next;
-}					t_group;
 
 typedef struct s_keysearch
 {
@@ -132,9 +126,6 @@ void	read_cmds_all(t_cmd *cmd);
 t_env	*init_env(void);
 void	add_back_env(t_env **lst, t_env *new);
 void	free_envs_all(t_env *env);
-/*	t_group.c	*/
-t_group		*init_group(void);
-void		add_back_group(t_group **lst, t_group *new);
 /*	t_keysearch.c	*/
 t_keysearch	*init_keysearch(void);
 void	add_back_keysearch(t_keysearch **lst, t_keysearch *new);

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 17:01:58 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:32:18 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_cmd	*token_to_cmd(t_token *t)
 	t_word	*param;
 	int		flag_red;
 
+	if (!t)
+		return (NULL);
 	flag_red = 0;
 	cmd = NULL;
 	tmp = init_cmd();

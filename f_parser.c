@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:16:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:24:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_redefine(t_token *t)
 	return (res);
 }
 
-void	redefine_$(t_token *t, char **envp)
+void	redefine_dollar(t_token *t, char **envp)
 {
 	t_env	*env;
 
@@ -102,16 +102,23 @@ void	redefine_quo(t_token *t, int type)
 	}
 }
 
-t_cmd	*parse_tokens(t_token *t, char **envp)
+t_cmd	*parse_tokens(t_token **t, char **envp)
 {
 	t_cmd *cmd;
 
-	redefine_quo(t, DQUOINT);
-	redefine_$(t, envp);
-	redefine_quo(t, QUOINT);
-	optimize_words(t);
-	optimize_delims(&t);
-	syntax_checker(t);
-	cmd = token_to_cmd(t);
+	redefine_quo(*t, DQUOINT);
+	redefine_dollar(*t, envp);
+	redefine_quo(*t, QUOINT);
+	optimize_words(*t);
+	printf("words are optimizes\n");
+	read_tokens(*t);
+	optimize_delims(t);
+	printf("delims are optimizes\n");
+	read_tokens(*t);
+	syntax_checker(*t);
+	read_tokens(*t);
+	cmd = token_to_cmd(*t);
+	printf("---------\n");
+	read_tokens(*t);
 	return (cmd);
 }

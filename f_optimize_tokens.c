@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 15:11:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:00:08 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:58:20 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,51 @@ void	delite_curr_token(t_token *curr, t_token *prev)
 	free_token(curr);
 }
 
+t_token	*skip_to_delims(t_token *tmp, t_token **prev)
+{
+	while (tmp && tmp->type != DELINT)
+	{
+		*prev = tmp;
+		tmp = tmp->next;
+	}
+	return (tmp);
+}
+
+void	delete_delims(t_token **tmp, t_token *prev, t_token **t)
+{
+	t_token *curr;
+	t_token	*ti;
+
+	ti = *tmp;
+	while (ti && ti->type == DELINT)
+	{
+		curr = ti;
+		ti = ti->next;
+		if (prev)
+			delite_curr_token(curr, prev);
+		else
+		{
+			*tmp = ti;
+			*t = *tmp;
+			free_token(curr);
+		}
+	}
+	*tmp = ti;
+}
+
 void	optimize_delims(t_token **t)
 {
 	t_token	*tmp;
 	t_token	*prev;
-	t_token	*curr;
 
 	tmp = *t;
 	prev = NULL;
 	while (tmp)
 	{
-		while (tmp && tmp->type != DELINT)
-		{
-			prev = tmp;
-			tmp = tmp->next;
-		}
-		if (!t)
+		tmp = skip_to_delims(tmp, &prev);
+		if (!tmp)
 			break ;
-		while (tmp && tmp->type == DELINT)
-		{
-			curr = tmp;
-			tmp = tmp->next;
-			if (prev)
-				delite_curr_token(curr, prev);
-			else
-			{
-				*t = tmp;
-				free_token(curr);
-			}
-		}
+		delete_delims(&tmp, prev, t);
 		if (tmp)
 		{
 			prev = tmp;

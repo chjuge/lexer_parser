@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 17:01:18 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:23:41 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ t_keysearch	*init_keysearch(void);
 void	add_back_keysearch(t_keysearch **lst, t_keysearch *new);
 void	free_keysearch(t_keysearch *t);
 /*	f_parser.c	*/
-t_cmd	*parse_tokens(t_token *t, char **envp);
-void	redefine_$(t_token *t, char **envp);
+t_cmd	*parse_tokens(t_token **t, char **envp);
+void	redefine_dollar(t_token *t, char **envp);
 /*	f_redefine_str.c	*/
 int		get_substr(char *src, char **dst, int *len, char ch);
 void	redefine_full(t_token *t, t_env *env);

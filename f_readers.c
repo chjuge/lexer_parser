@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:54:32 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:00:25 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	read_tokens(t_token *t)
 {
+	if (!t)
+		printf("There are no tokens!\n");
 	while (t)
 	{
 		printf("type	%d	len	%d	ptr	%p	content	'%s'	\n", t->type, t->len, t->ptr, t->content);
@@ -81,6 +83,8 @@ void	read_cmds_all(t_cmd *cmd)
 	t_cmd	*tmp;
 
 	tmp = cmd;
+	if (tmp == NULL)
+		printf("list of commands is empty\n");
 	while (tmp)
 	{
 		read_cmd(tmp);

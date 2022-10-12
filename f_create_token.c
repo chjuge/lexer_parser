@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 18:50:05 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 18:55:45 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:08:40 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,15 @@ void	token_by_type(t_token *t, int *i)
 	if (t->type == WORDINT)
 		token_word(t, i);
 	else if (t->type == DELINT)
-		token_del(t, i);
+		(*i)++;
 	else if (t->type == PIPEINT)
-		token_pipe(t, i);
+		(*i)++;
 	else if (t->type == QUOINT)
-		token_quo(t, i);
+		token_quo(t, i, QUO);
 	else if (t->type == DQUOINT)
-		token_dquo(t, i);
-	else if (t->type == REDGINT)
-		token_redg(t, i);
-	else if (t->type == REDLINT)
-		token_redl(t, i);
+		token_quo(t, i, DQUO);
+	else if (t->type == REDGINT || t->type == REDLINT)
+		token_red(t, i);
 	else
 	{
 		printf("Something got wrong! No right token\n");

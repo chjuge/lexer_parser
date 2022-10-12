@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 14:32:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:15:41 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,10 @@ void	free_tokens_all(t_token *t);
 t_cmd	*string_run(char *str, char **envp);
 /*	f_token_by_type.c	*/
 void	token_word(t_token *t, int *i);
-void	token_quo(t_token *t, int *i);
-void	token_dquo(t_token *t, int *i);
+void	token_quo(t_token *t, int *i, char ch);
 void	token_del(t_token *t, int *i);
 void	token_pipe(t_token *t, int *i);
-void	token_redg(t_token *t, int *i);
-void	token_redl(t_token *t, int *i);
+void	token_red(t_token *t, int *i);
 /*	f_fill_content.c	*/
 void	fill_content(t_token *t);
 void	fill_content_all(t_token *t);
@@ -130,9 +128,10 @@ void	read_ks(t_keysearch *ks);
 void	read_red_all(t_red *r);
 void	free_cmds_all(t_cmd *t);
 void	read_cmds_all(t_cmd *cmd);
-/*	t_enc.c	*/
+/*	t_env.c	*/
 t_env	*init_env(void);
-void		add_back_env(t_env **lst, t_env *new);
+void	add_back_env(t_env **lst, t_env *new);
+void	free_envs_all(t_env *env);
 /*	t_group.c	*/
 t_group		*init_group(void);
 void		add_back_group(t_group **lst, t_group *new);
@@ -151,14 +150,6 @@ void	optimize_delims(t_token **t);
 void	optimize_words(t_token *t);
 /*	syntax_checker.c	*/
 void	syntax_checker(t_token *t);
-/*	token_by_type.c	*/
-void	token_word(t_token *t, int *i);
-void	token_del(t_token *t, int *i);
-void	token_pipe(t_token *t, int *i);
-void	token_quo(t_token *t, int *i);
-void	token_dquo(t_token *t, int *i);
-void	token_redg(t_token *t, int *i);
-void	token_redl(t_token *t, int *i);
 /*	t_red.c	*/
 t_red	*init_red(char	*content);
 void	add_back_red(t_red **lst, t_red *new);

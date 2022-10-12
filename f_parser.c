@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 13:30:17 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:16:14 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	redefine_$(t_token *t, char **envp)
 			redefine_full(t, env);
 		t = t->next;
 	}
+	free_envs_all(env);
 }
 
 void	redefine_quo(t_token *t, int type)

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 14:06:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:32:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,28 @@ void	rewrite_red(char **old, char *new)
 	(*old) = ft_strdup(new);	
 }
 
-char	**parse_args(t_param	*p)
+int	find_count(t_param *tmp)
 {
-	int 	count;
-	int		i;
-	t_param	*tmp;
-	char	**arr;
+	int	count;
 
-	tmp = p;
 	count = 0;
 	while (tmp)
 	{
 		count++;
 		tmp = tmp->next;
 	}
-	arr = malloc(sizeof(char*) * (count + 1));
-	printf("arr -> %p\n", arr);
+	return (count);
+}
+
+char	**parse_args(t_param	*p)
+{
+	int 	count;
+	int		i;
+	char	**arr;
+
+	count = find_count(p);
+	arr = malloc(sizeof(char *) * (count + 1));
+	arr[count] = NULL;
 	i = 0;
 	while (i < count)
 	{
@@ -42,7 +48,6 @@ char	**parse_args(t_param	*p)
 		p = p->next;
 		i++;
 	}
-	arr[i] = NULL;
 	return (arr);
 }
 
@@ -92,7 +97,6 @@ t_cmd	*token_to_cmd(t_token *t)
 		{
 			tmp->cmd = ft_strdup(param->content);
 			tmp->args = parse_args(param);
-			printf("tmp->args	%p\n", tmp->args);
 			free_params_all(param);
 			param = NULL;
 			add_back_cmd(&cmd, tmp);
@@ -104,7 +108,6 @@ t_cmd	*token_to_cmd(t_token *t)
 	}
 	tmp->cmd = ft_strdup(param->content);
 	tmp->args = parse_args(param);
-	printf("tmp-> args	%p\n", tmp->args);
 	add_back_cmd(&cmd, tmp);
 	free_params_all(param);
 	return (cmd);

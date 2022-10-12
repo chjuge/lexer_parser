@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 14:32:55 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:28:39 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,15 @@ void	add_back_cmd(t_cmd **lst, t_cmd *new)
 
 void	free_cmd(t_cmd *cmd)
 {
-	while (cmd)
-	{
-		if (cmd->cmd)
-			free(cmd->cmd);
-		free_reds_all(cmd->red_g);
-		free_reds_all(cmd->red_gg);
-		free_reds_all(cmd->red_l);
-		free_reds_all(cmd->red_ll);
-		free_array((cmd->args));
-		cmd = cmd->next;
-	}
+	if (!cmd)
+		return ;
+	if (cmd->cmd)
+		free(cmd->cmd);
+	free_reds_all(cmd->red_g);
+	free_reds_all(cmd->red_gg);
+	free_reds_all(cmd->red_l);
+	free_reds_all(cmd->red_ll);
+	free_array((cmd->args));
 }
 
 void	free_cmds_all(t_cmd *t)

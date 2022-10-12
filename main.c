@@ -6,13 +6,13 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 14:28:07 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:33:46 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-char	*get_line(char *s) // используем readline для получения строки
+char	*get_line(char *s)
 {
 	char	*str;
 	
@@ -35,14 +35,13 @@ int	main(int argc, char** argv, char **envp)
 	str = get_line(str);
 	printf("inputed string: '%s'\n", str);
 	cmd = string_run(str, envp);
-	// read_cmds_all(cmd);
-	// free(str);
-	printf("%p\n", cmd->args);
+	read_cmds_all(cmd);
+	free(str);
 	free_cmds_all(cmd);
 	return (0);
 }
 
-t_cmd	*string_run(char *str, char **envp) // обрабатываем строку, получаем токены
+t_cmd	*string_run(char *str, char **envp)
 {
 	int		i;
 	t_token	*t;
@@ -50,7 +49,6 @@ t_cmd	*string_run(char *str, char **envp) // обрабатываем строк
 	t_cmd	*cmd;
 
 	i = 0;
-
 	t = NULL;
 	while (str[i] != ENDL)
 	{

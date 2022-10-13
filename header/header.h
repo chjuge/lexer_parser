@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 19:23:41 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:13:16 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,3 +149,4 @@ t_cmd	*token_to_cmd(t_token *t);
 void	free_array(char **arr);
 #endif
 // gcc -Wall -Wextra -Werror -lreadline *.c     
+

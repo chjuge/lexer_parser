@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 17:32:18 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:13:17 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,66 +51,83 @@ char	**parse_args(t_word	*p)
 	return (arr);
 }
 
-void	add_red_to_cmd(t_cmd *cmd, int flag, char *content)
+void	add_red_to_cmd(t_cmd *cmd, int *flag, char *content)
 {
 	t_word	*tmp;
 
 	tmp = init_word(content);
-	if (flag == REDGINT)
+	if (*flag == REDGINT)
 		add_back_word(&(cmd->red_g), tmp);
-	else if (flag == REDGGINT)
+	else if (*flag == REDGGINT)
 		add_back_word(&(cmd->red_gg), tmp);
-	else if (flag == REDLINT)
+	else if (*flag == REDLINT)
 		add_back_word(&(cmd->red_l), tmp);
 	else
 		add_back_word(&(cmd->red_ll), tmp);
+	*flag = 0;
 }
+
+void	init_and_add_back_word(t_word **head,char *str)
+{
+	t_word	*tmp;
+
+	tmp = init_word(str);
+	add_back_word(head, tmp);
+}
+
+void	end_of_cmd(t_cmd **cmd, t_cmd *tmp, t_word **param)
+{
+	tmp->cmd = ft_strdup((*param)->word);
+	tmp->args = parse_args(*param);
+	free_words_all(*param);
+	*param = NULL;
+	add_back_cmd(cmd, tmp);
+}
+
+void	init_base(t_cmd **cmd, t_cmd **tmp, int *flag, t_word **param)
+{
+	*flag = 0;
+	*cmd = NULL;
+	*tmp = init_cmd();
+	*param = NULL;
+}
+
+// void	case_word(int flag, t_word **param, t_token *t, t_cmd *tmp)
+// {
+// 	if (flag == 0)
+// 		init_and_add_back_word(param, t->content);
+// 	else
+// 		add_red_to_cmd(tmp, &flag, t->content);
+// }
 
 t_cmd	*token_to_cmd(t_token *t)
 {
 	t_cmd	*cmd;
 	t_cmd	*tmp;
-	t_word	*tmp_p;
 	t_word	*param;
-	int		flag_red;
+	int		flag;
 
 	if (!t)
 		return (NULL);
-	flag_red = 0;
-	cmd = NULL;
-	tmp = init_cmd();
-	param = NULL;
+	init_base(&cmd, &tmp, &flag, &param);
 	while (t)
 	{
 		if (t->type == WORDINT)
 		{
-			if (flag_red == 0)
-			{
-				tmp_p = init_word(t->content);
-				add_back_word(&param, tmp_p);
-			}
+			if (flag == 0)
+				init_and_add_back_word(&param, t->content);
 			else
-			{
-				add_red_to_cmd(tmp, flag_red, t->content);
-				flag_red = 0;
-			}
+				add_red_to_cmd(tmp, &flag, t->content);
 		}
 		else if (t->type == PIPEINT)
 		{
-			tmp->cmd = ft_strdup(param->word);
-			tmp->args = parse_args(param);
-			free_words_all(param);
-			param = NULL;
-			add_back_cmd(&cmd, tmp);
+			end_of_cmd(&cmd, tmp, &param);
 			tmp = init_cmd();
 		}
 		else
-			flag_red = t->type;
+			flag = t->type;
 		t = t->next;
 	}
-	tmp->cmd = ft_strdup(param->word);
-	tmp->args = parse_args(param);
-	add_back_cmd(&cmd, tmp);
-	free_words_all(param);
+	end_of_cmd(&cmd, tmp, &param);
 	return (cmd);
 }

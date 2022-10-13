@@ -6,35 +6,17 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:29:58 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:05:20 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-int	get_substr(char *src, char **dst, int *len, char ch)
-{
-	int		i;
-	char	*s;
-
-	i = 0;
-	while (src[i] != ch && src[i] != ENDL)
-		i++;
-	if (i != 0)
-	{
-		s = malloc(i + 1);
-		ft_strlcpy(s, src, i + 1);
-		*len = i;
-		*dst = s;
-	}
-	return (i);
-}
-
 t_ks	*redefine_key(t_token *t)
 {
 	t_ks	*tmp;
 	t_ks	*ks;
-	int			i;
+	int		i;
 
 	ks = NULL;
 	i = 0;
@@ -76,8 +58,8 @@ void	redefine_value(t_ks *ks, t_env *env, int flag)
 
 void	parts_into_str(t_token *t, t_ks *ks)
 {
-	int			len;
-	char		*str;
+	int		len;
+	char	*str;
 	t_ks	*tmp;
 
 	len = 0;
@@ -101,26 +83,26 @@ void	parts_into_str(t_token *t, t_ks *ks)
 
 t_env	*check_key(t_env *env, t_ks *tmp, int *flag)
 {
-		while (*flag == 0 && env)						
+	while (*flag == 0 && env)
+	{
+		if (tmp->len == env->len_k
+			&& ft_strncmp(tmp->key, env->key, tmp->len) == 0)
 		{
-			if (tmp->len == env->len_k
-				&& ft_strncmp(tmp->key, env->key, tmp->len) == 0)
-			{
-				*flag = 1;
-				break ;
-			}
-			else
-				env = env->next;
+			*flag = 1;
+			break ;
 		}
-		return (env);
+		else
+			env = env->next;
+	}
+	return (env);
 }
 
 void	redefine_full(t_token *t, t_env *envf)
 {
 	t_ks	*ks;
 	t_ks	*tmp;
-	int			flag;
-	t_env		*env;
+	int		flag;
+	t_env	*env;
 
 	ks = redefine_key(t);
 	flag = 0;

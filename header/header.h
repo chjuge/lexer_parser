@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:57:05 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:06:12 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	read_tokens(t_token *t);
 void	read_env(t_env *env);
 void	read_ks(t_ks *ks);
 void	read_red_all(t_word *r);
+void	read_cmd(t_cmd *cmd);
 void	free_cmds_all(t_cmd *t);
 void	read_cmds_all(t_cmd *cmd);
 /*	t_env.c	*/
@@ -132,8 +133,9 @@ int		check_redefine(t_token *t);
 t_env	*get_env(char **envp);
 void	get_kv(t_env *env, char *str);
 /*	f_redefine_str.c	*/
-int		get_substr(char *src, char **dst, int *len, char ch);
 void	redefine_full(t_token *t, t_env *env);
+/*	f_get_substr.c	*/
+int		get_substr(char *src, char **dst, int *len, char ch);
 /*	f_optimize_tokens.c	*/
 void	optimize_delims(t_token **t);
 void	optimize_words(t_token *t);

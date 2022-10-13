@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:29:59 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:01:28 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	read_tokens(t_token *t)
 		printf("There are no tokens!\n");
 	while (t)
 	{
-		printf("type	%d	len	%d	ptr	%p	content	'%s'	\n", t->type, t->len, t->ptr, t->content);
+		printf("type	%d	len	%d	ptr	%p	content	'%s'	\n",
+			t->type, t->len, t->ptr, t->content);
 		t = t->next;
 	}
 }
@@ -34,7 +35,7 @@ void	read_env(t_env *env)
 
 void	read_ks(t_ks *ks)
 {
-	while(ks)
+	while (ks)
 	{
 		printf("key:	%s,		value:	%s\n", ks->key, ks->value);
 		ks = ks->next;
@@ -44,7 +45,7 @@ void	read_ks(t_ks *ks)
 void	read_red_all(t_word *r)
 {
 	if (!r)
-		printf("%s\n", (char*)NULL);
+		printf("%s\n", (char *)(NULL));
 	else
 	{
 		while (r)
@@ -76,18 +77,4 @@ void	read_cmd(t_cmd *cmd)
 	read_red_all(cmd->red_l);
 	printf("red_ll: \n");
 	read_red_all(cmd->red_ll);
-}
-
-void	read_cmds_all(t_cmd *cmd)
-{
-	t_cmd	*tmp;
-
-	tmp = cmd;
-	if (tmp == NULL)
-		printf("list of commands is empty\n");
-	while (tmp)
-	{
-		read_cmd(tmp);
-		tmp = tmp->next;
-	}
 }

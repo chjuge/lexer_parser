@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:02:07 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:59:46 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:30:20 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_word	*init_word(char	*content)
 	return (res);
 }
 
-t_word *word_last(t_word *lst)
+t_word	*word_last(t_word *lst)
 {
 	if (!lst)
 		return (0);

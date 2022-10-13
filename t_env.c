@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:33:52 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:15:08 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:30:28 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_env	*init_env(void)
 	new_el->val = NULL;
 	new_el->len_k = 0;
 	new_el->len_v = 0;
-	return(new_el);
+	return (new_el);
 }
 
 t_env	*env_last(t_env *lst)

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 19:28:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:31:30 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_line(char *s)
 {
 	char	*str;
-	
+
 	if (s)
 		free(s);
 	str = readline("vvodi_svoyu_hernyu-> ");
@@ -24,7 +24,7 @@ char	*get_line(char *s)
 	return (str);
 }
 
-int	main(int argc, char** argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
 	t_cmd	*cmd;
@@ -45,7 +45,7 @@ t_cmd	*string_run(char *str, char **envp)
 {
 	int		i;
 	t_token	*t;
-	t_token *tmp;
+	t_token	*tmp;
 	t_cmd	*cmd;
 
 	i = 0;

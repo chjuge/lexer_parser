@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keysearch.c                                        :+:      :+:    :+:   */
+/*   t_keysearch.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:18:02 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/08 15:07:39 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:29:58 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_keysearch	*keysearch_last(t_keysearch *lst)
+t_ks	*keysearch_last(t_ks *lst)
 {
 	if (!lst)
 		return (0);
@@ -21,9 +21,9 @@ t_keysearch	*keysearch_last(t_keysearch *lst)
 	return (lst);
 }
 
-void	add_back_keysearch(t_keysearch **lst, t_keysearch *new)
+void	add_back_keysearch(t_ks **lst, t_ks *new)
 {
-	t_keysearch	*tmp;
+	t_ks	*tmp;
 
 	if (!lst)
 		return ;
@@ -37,11 +37,11 @@ void	add_back_keysearch(t_keysearch **lst, t_keysearch *new)
 	tmp->next = new;
 }
 
-t_keysearch	*init_keysearch(void)
+t_ks	*init_keysearch(void)
 {
-	t_keysearch	*new_el;
+	t_ks	*new_el;
 
-	new_el = malloc(sizeof(t_keysearch));
+	new_el = malloc(sizeof(t_ks));
 	new_el->ptr = NULL;
 	new_el->next = NULL;
 	new_el->key = NULL;
@@ -50,9 +50,9 @@ t_keysearch	*init_keysearch(void)
 	return (new_el);
 }
 
-void	free_keysearch(t_keysearch *t)
+void	free_keysearch(t_ks *t)
 {
-	t_keysearch	*tmp;
+	t_ks	*tmp;
 
 	while (t)
 	{

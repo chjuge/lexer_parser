@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/12 16:30:31 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:29:58 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	get_substr(char *src, char **dst, int *len, char ch)
 	return (i);
 }
 
-t_keysearch	*redefine_key(t_token *t)
+t_ks	*redefine_key(t_token *t)
 {
-	t_keysearch	*tmp;
-	t_keysearch	*ks;
+	t_ks	*tmp;
+	t_ks	*ks;
 	int			i;
 
 	ks = NULL;
@@ -57,7 +57,7 @@ t_keysearch	*redefine_key(t_token *t)
 	return (ks);
 }
 
-void	redefine_value(t_keysearch *ks, t_env *env, int flag)
+void	redefine_value(t_ks *ks, t_env *env, int flag)
 {
 	if (ks->value)
 		free(ks->value);
@@ -74,11 +74,11 @@ void	redefine_value(t_keysearch *ks, t_env *env, int flag)
 	}
 }
 
-void	parts_into_str(t_token *t, t_keysearch *ks)
+void	parts_into_str(t_token *t, t_ks *ks)
 {
 	int			len;
 	char		*str;
-	t_keysearch	*tmp;
+	t_ks	*tmp;
 
 	len = 0;
 	tmp = ks;
@@ -99,7 +99,7 @@ void	parts_into_str(t_token *t, t_keysearch *ks)
 	t->len = len;
 }
 
-t_env	*check_key(t_env *env, t_keysearch *tmp, int *flag)
+t_env	*check_key(t_env *env, t_ks *tmp, int *flag)
 {
 		while (*flag == 0 && env)						
 		{
@@ -117,8 +117,8 @@ t_env	*check_key(t_env *env, t_keysearch *tmp, int *flag)
 
 void	redefine_full(t_token *t, t_env *envf)
 {
-	t_keysearch	*ks;
-	t_keysearch	*tmp;
+	t_ks	*ks;
+	t_ks	*tmp;
 	int			flag;
 	t_env		*env;
 

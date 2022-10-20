@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:38:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:56:52 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,10 @@ int	find_count(t_word *tmp)
 
 void	add_red_to_cmd(t_cmd *cmd, int *flag, char *content)
 {
-	t_word	*tmp;
+	t_red	*tmp;
 
-	tmp = init_word(content);
-	if (*flag == REDGINT)
-		add_back_word(&(cmd->red_g), tmp);
-	else if (*flag == REDGGINT)
-		add_back_word(&(cmd->red_gg), tmp);
-	else if (*flag == REDLINT)
-		add_back_word(&(cmd->red_l), tmp);
-	else
-		add_back_word(&(cmd->red_ll), tmp);
+	tmp = init_red(content, *flag);
+	add_back_red(&(cmd->red), tmp);
 	*flag = 0;
 }
 

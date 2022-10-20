@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 15:01:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:00:19 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	read_ks(t_ks *ks)
 	}
 }
 
-void	read_red_all(t_word *r)
+void	read_red_all(t_red *r)
 {
 	if (!r)
 		printf("%s\n", (char *)(NULL));
@@ -50,7 +50,7 @@ void	read_red_all(t_word *r)
 	{
 		while (r)
 		{
-			printf("%s\n", r->word);
+			printf("%d	%s\n", r->type, r->word);
 			r = r->next;
 		}
 	}
@@ -69,12 +69,7 @@ void	read_cmd(t_cmd *cmd)
 		i++;
 	}
 	printf("------\n");
-	printf("red_g: \n");
-	read_red_all(cmd->red_g);
-	printf("red_gg: \n");
-	read_red_all(cmd->red_gg);
-	printf("red_l: \n");
-	read_red_all(cmd->red_l);
-	printf("red_ll: \n");
-	read_red_all(cmd->red_ll);
+	printf("red: \n");
+	read_red_all(cmd->red);
+
 }

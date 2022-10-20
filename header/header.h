@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 15:06:12 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:04:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,19 @@ typedef struct s_word
 	char			*word;
 }					t_word;
 
+typedef struct s_red
+{
+	struct s_red	*next;
+	char			*word;
+	int				type;
+}					t_red;
+
+
 typedef struct s_cmd
 {
 	char			*cmd;
 	char			**args;
-	t_word			*red_g;
-	t_word			*red_gg;
-	t_word			*red_l;
-	t_word			*red_ll;
+	t_red			*red;
 	struct s_cmd	*next;
 }					t_cmd;
 
@@ -112,7 +117,7 @@ void	fill_content_all(t_token *t);
 void	read_tokens(t_token *t);
 void	read_env(t_env *env);
 void	read_ks(t_ks *ks);
-void	read_red_all(t_word *r);
+void	read_red_all(t_red *r);
 void	read_cmd(t_cmd *cmd);
 void	free_cmds_all(t_cmd *t);
 void	read_cmds_all(t_cmd *cmd);
@@ -167,5 +172,10 @@ void	add_red_to_cmd(t_cmd *cmd, int *flag, char *content);
 void	init_and_add_back_word(t_word **head, char *str);
 void	end_of_cmd(t_cmd **cmd, t_cmd **tmp, t_word **param, t_token *t);
 void	init_base(t_cmd **cmd, t_cmd **tmp, int *flag, t_word **param);
+/*	t_red.c	*/
+t_red	*init_red(char	*content, int type);
+void	add_back_red(t_red **lst, t_red *new);
+void	free_red(t_red *t);
+void	free_reds_all(t_red *t);
 #endif
-// gcc -Wall -Wextra -Werror -lreadline *.c     
+// gcc -Wall -Wextra -Werror -lreadline *.c

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token.c                                          :+:      :+:    :+:   */
+/*   t_red.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 13:16:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 14:45:29 by mproveme         ###   ########.fr       */
+/*   Created: 2022/10/10 14:02:07 by mproveme          #+#    #+#             */
+/*   Updated: 2022/10/20 15:01:07 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/header.h"
 
-t_token	*init_token(void)
+t_red	*init_red(char	*content, int type)
 {
-	t_token	*res;
+	t_red	*res;
 
-	res = malloc(sizeof(t_token));
+	res = malloc(sizeof(t_red));
 	res->next = NULL;
-	res->type = 0;
-	res->len = 0;
-	res->ptr = NULL;
-	res->content = NULL;
+	res->word = ft_strdup(content);
+	res->type = type;
 	return (res);
 }
 
-t_token	*token_last(t_token *lst)
+t_red	*red_last(t_red *lst)
 {
 	if (!lst)
 		return (0);
@@ -34,9 +32,9 @@ t_token	*token_last(t_token *lst)
 	return (lst);
 }
 
-void	add_back_token(t_token **lst, t_token *new)
+void	add_back_red(t_red **lst, t_red *new)
 {
-	t_token	*tmp;
+	t_red	*tmp;
 
 	if (!lst)
 		return ;
@@ -46,28 +44,28 @@ void	add_back_token(t_token **lst, t_token *new)
 		*lst = new;
 		return ;
 	}
-	tmp = token_last(tmp);
+	tmp = red_last(tmp);
 	tmp->next = new;
 }
 
-void	free_token(t_token *t)
+void	free_red(t_red *t)
 {
-	if (t->content)
-		free(t->content);
+	if (t->word)
+		free(t->word);
 	free(t);
 }
 
-void	free_tokens_all(t_token *t)
+void	free_reds_all(t_red *t)
 {
-	t_token	*tmp;
+	t_red	*tmp;
 
-	if (!t)
+	if (t == NULL)
 		return ;
 	tmp = t;
 	while (t)
 	{
 		tmp = t;
 		t = t->next;
-		free_token(tmp);
+		free_red(tmp);
 	}
 }

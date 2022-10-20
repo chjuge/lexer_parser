@@ -6,7 +6,7 @@
 /*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 21:05:06 by ilya             ###   ########.fr       */
+/*   Updated: 2022/10/20 21:05:19 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@
 // 	char	*str;
 // 	t_cmd	*cmd;
 
-	(void)argc;
-	(void)argv;
-	str = NULL;
-	// str = get_line(str);
-	// printf("inputed string: '%s'\n", str);
-	str = "     <           infile cat >outfile | $HOME >outfile2";
-	cmd = string_run(str, envp);
-	read_cmds_all(cmd);
-	// free(str);
-	free_cmds_all(cmd);
-	return (0);
-}
+// 	(void)argc;
+// 	(void)argv;
+// 	str = NULL;
+// 	// str = get_line(str);
+// 	// printf("inputed string: '%s'\n", str);
+// 	str = "     <           infile cat >outfile | $HOME >outfile2";
+// 	cmd = string_run(str, envp);
+// 	read_cmds_all(cmd);
+// 	// free(str);
+// 	free_cmds_all(cmd);
+// 	return (0);
+// }
 
 t_cmd	*string_run(char *str, char **envp)
 {

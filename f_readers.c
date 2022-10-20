@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_readers.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 15:01:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/18 04:24:32 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	read_ks(t_ks *ks)
 void	read_red_all(t_word *r)
 {
 	if (!r)
-		printf("%s\n", (char *)(NULL));
+		printf("%s\n", "NULL");
 	else
 	{
 		while (r)

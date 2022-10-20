@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:31:30 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/18 04:18:49 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ char	*get_line(char *s)
 	return (str);
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	char	*str;
-	t_cmd	*cmd;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*str;
+// 	t_cmd	*cmd;
 
-	(void)argc;
-	(void)argv;
-	str = NULL;
-	str = get_line(str);
-	printf("inputed string: '%s'\n", str);
-	cmd = string_run(str, envp);
-	read_cmds_all(cmd);
-	free(str);
-	free_cmds_all(cmd);
-	return (0);
-}
+// 	(void)argc;
+// 	(void)argv;
+// 	str = NULL;
+// 	str = get_line(str);
+// 	printf("inputed string: '%s'\n", str);
+// 	cmd = string_run(str, envp);
+// 	read_cmds_all(cmd);
+// 	free(str);
+// 	free_cmds_all(cmd);
+// 	return (0);
+// }
 
 t_cmd	*string_run(char *str, char **envp)
 {

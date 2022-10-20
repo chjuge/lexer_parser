@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 15:06:12 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/20 02:37:39 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@
 # define REDGGINT 8
 # define WORDINT 0
 # define ENDL '\0'
+
+typedef enum
+{
+	e_simple_command,
+	e_echo,
+	e_cd,
+	e_pwd,
+	e_unset,
+	e_export,
+	e_env,
+	e_exit
+}	e_type;
 
 typedef struct s_token
 {
@@ -77,6 +89,7 @@ typedef struct s_cmd
 	t_word			*red_l;
 	t_word			*red_ll;
 	struct s_cmd	*next;
+	e_type			type;
 }					t_cmd;
 
 /*	f_create_token.c	*/
@@ -168,4 +181,4 @@ void	init_and_add_back_word(t_word **head, char *str);
 void	end_of_cmd(t_cmd **cmd, t_cmd **tmp, t_word **param, t_token *t);
 void	init_base(t_cmd **cmd, t_cmd **tmp, int *flag, t_word **param);
 #endif
-// gcc -Wall -Wextra -Werror -lreadline *.c     
+// gcc -Wall -Wextra -Werror -lreadline *.c

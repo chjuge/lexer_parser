@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:27:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 15:11:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:22:35 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	// str = get_line(str);
 	// printf("inputed string: '%s'\n", str);
-	str = "     <           infile cat >outfile | $HOME >outfile2";
+	str = "     <           infile cat >outfile | $HOME >outfile2 | cat | cat | cat";
 	cmd = string_run(str, envp);
-	read_cmds_all(cmd);
+	// read_cmds_all(cmd);
 	// free(str);
 	free_cmds_all(cmd);
 	return (0);

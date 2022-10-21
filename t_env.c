@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 18:33:52 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:30:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:11:00 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ void	add_back_env(t_env **lst, t_env *new)
 
 void	free_env(t_env *env)
 {
-	free(env->key);
-	free(env->val);
+	if (env->key)
+		free(env->key);
+	if (env->val)
+		free(env->val);
+	free(env);
 }
 
 void	free_envs_all(t_env *env)

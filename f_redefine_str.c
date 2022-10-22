@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:22:39 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 15:05:20 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/22 10:02:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_ks	*redefine_key(t_token *t)
 
 	ks = NULL;
 	i = 0;
-	tmp = init_keysearch();
 	if (t->content[0] != '$')
 	{
+		tmp = init_keysearch();
 		i += get_substr(t->content, &(tmp->value), &(tmp->len), '$');
 		add_back_keysearch(&ks, tmp);
 	}

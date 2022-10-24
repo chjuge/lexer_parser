@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:18 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 15:02:44 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:23:22 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_cmd(t_cmd *cmd)
 		free(cmd->cmd);
 	free_reds_all(cmd->red);
 	free_array((cmd->args));
+	free(cmd);
 }
 
 void	free_cmds_all(t_cmd *t)

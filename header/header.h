@@ -6,7 +6,7 @@
 /*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 21:04:08 by ilya             ###   ########.fr       */
+/*   Updated: 2022/10/25 15:01:23 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ typedef struct s_cmd
 	char			**args;
 	t_red			*red;
 	struct s_cmd	*next;
+	char			*heredoc;
 	e_type			type;
+	int				input;
+	int				output;
 }					t_cmd;
 
 /*	f_create_token.c	*/

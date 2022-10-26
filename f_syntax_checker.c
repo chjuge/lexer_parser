@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:31:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/11 19:14:36 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:21:42 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,46 +28,59 @@ char	*to_str(int i)
 void	print_parse_error(char *s)
 {
 	printf("parse error near `%s'\n", s);
-	exit(1);
 }
 
-void	check_last(t_token *t)
+int	check_last(t_token *t)
 {
 	if (!(t->next) && t->type != WORDINT)
+	{
 		print_parse_error(to_str(t->type));
+		return (ERR);
+	}
+	return (OK);
 }
 
-void	check_current(t_token *prev, t_token *curr)
+int	check_current(t_token *prev, t_token *curr)
 {
 	if (prev->type == WORDINT)
-		return ;
+		return (OK);
 	if (prev->type == PIPEINT)
 	{
 		if (curr->type == PIPEINT)
+		{
 			print_parse_error(to_str(PIPEINT));
+			return (ERR);
+		}
 	}
-	else
+	if (curr->type != WORDINT)
 	{
-		if (curr->type != WORDINT)
-			print_parse_error(to_str(curr->type));
+		print_parse_error(to_str(curr->type));
+		return (ERR);
 	}
+	return (OK);
 }
 
-void	syntax_checker(t_token *t)
+int	syntax_checker(t_token *t)
 {
 	t_token	*prev;
 
 	if (!t)
-		return ;
+		return (OK);
 	if (t->type == PIPEINT)
+	{
 		print_parse_error(to_str(PIPEINT));
+		return (ERR);
+	}
 	prev = t;
 	t = t->next;
 	while (t)
 	{
-		check_current(prev, t);
+		if (check_current(prev, t) == ERR)
+			return (ERR);
 		prev = t;
 		t = t->next;
 	}
-	check_last(prev);
+	if (check_last(prev) == ERR)
+		return (ERR);
+	return (OK);
 }

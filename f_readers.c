@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_readers.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:09:30 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/20 21:04:29 by ilya             ###   ########.fr       */
+/*   Updated: 2022/10/26 19:25:48 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,4 @@ void	read_cmd(t_cmd *cmd)
 	printf("------\n");
 	printf("red: \n");
 	read_red_all(cmd->red);
-
 }

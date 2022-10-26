@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/26 18:11:31 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:26:37 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define REDGGINT 8
 # define WORDINT 0
 # define ENDL '\0'
+# define ERR 0
+# define OK 0
 
 typedef enum
 {
@@ -86,7 +88,6 @@ typedef struct s_red
 	char			*word;
 	int				type;
 }					t_red;
-
 
 typedef struct s_cmd
 {
@@ -167,7 +168,7 @@ t_token	*skip_to_delims(t_token *tmp, t_token **prev);
 void	delete_delims(t_token **tmp, t_token *prev, t_token **t);
 void	token_cat(t_token *curr, t_token *next);
 /*	syntax_checker.c	*/
-void	syntax_checker(t_token *t);
+int		syntax_checker(t_token *t);
 /*	t_word.c	*/
 t_word	*init_word(char	*content);
 void	add_back_word(t_word **lst, t_word *new);

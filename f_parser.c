@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:37:58 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/13 14:57:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:23:35 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ t_cmd	*parse_tokens(t_token **t, char **envp)
 	redefine_quo(*t, QUOINT);
 	optimize_words(*t);
 	optimize_delims(t);
-	syntax_checker(*t);
-	cmd = token_to_cmd(*t);
+	if (syntax_checker(*t) == OK)
+		cmd = token_to_cmd(*t);
+	else
+		cmd = NULL;
 	return (cmd);
 }

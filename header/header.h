@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:58:31 by mproveme          #+#    #+#             */
-/*   Updated: 2022/10/25 15:01:23 by ilya             ###   ########.fr       */
+/*   Updated: 2022/10/26 18:11:31 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,4 +194,3 @@ void	add_back_red(t_red **lst, t_red *new);
 void	free_red(t_red *t);
 void	free_reds_all(t_red *t);
 #endif
-// gcc -Wall -Wextra -Werror -lreadline *.c
